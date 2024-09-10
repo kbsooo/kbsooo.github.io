@@ -1,6 +1,6 @@
 google_analytics: UA-NNNNNNNN-N
 
-theme: jekyll-theme-console
+# theme: jekyll-theme-console
 
 header_pages:
   - index.md
