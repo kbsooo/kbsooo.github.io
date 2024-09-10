@@ -1,9 +1,9 @@
 ---
-title: /
+title: /home
 layout: home
 permalink: /
 ---
 
-# Lorem ipsum
+# Welcome to KBSOO's page !
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I am a sophomore student at Myongji University, currently studying Computer Engineering. My primary interests include deep learning, data analysis, and backend development. I always enjoy learning and am eager to find opportunities where I can continue to grow and expand my skills in these areas.

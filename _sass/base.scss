@@ -131,3 +131,12 @@ pre { background-color: var(--background-color);  border: none;  padding: 0;  ma
 .highlight .vg { color: var(--code-color-7); } /* Name.Variable.Global */
 .highlight .vi { color: var(--code-color-7); } /* Name.Variable.Instance */
 .highlight .il { color: var(--code-color-14); } /* Literal.Number.Integer.Long */
+details {
+    summary {
+      h1 {
+        display: inline; // 제목과 화살표가 같은 줄에 표시되도록 설정
+      }
+  
+      cursor: pointer; // 커서가 손가락 모양으로 변경되도록 설정
+    }
+  }
