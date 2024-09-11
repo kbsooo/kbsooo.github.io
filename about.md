@@ -20,7 +20,7 @@ Live in Suji, Yongin City.
 - Data Analysis
 
 ## HOBBIES
-- Football
+- Soccer
 - Listen Music
 
 <br>
