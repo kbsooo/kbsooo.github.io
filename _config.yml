@@ -5,6 +5,7 @@ google_analytics: UA-NNNNNNNN-N
 header_pages:
   - index.md
   - about.md
+  # - posts.md
   - contact.md
 
 footer: 'follow me on <a href="https://github.com/kbsooo">github</a>'
