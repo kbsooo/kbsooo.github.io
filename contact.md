@@ -28,5 +28,5 @@ email: kbsoo0620@icloud.com
   <label>
     <textarea rows="5" id="message" name="message" placeholder="message:" autocomplete="off"></textarea>
   </label>
-  <button type="submit">Send</button>
+  <button type="submit">submit</button>
 </form>
