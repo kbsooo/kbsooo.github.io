@@ -23,13 +23,10 @@ email: kbsoo0620@icloud.com
   method="POST"
 >
   <label>
-    <input type="text" id="name" name="name" placeholder="name:" autocomplete="off">
-  </label>
-  <label>
     <input type="text" id="email" name="email" placeholder="email:" autocomplete="off">
   </label>
   <label>
     <textarea rows="5" id="message" name="message" placeholder="message:" autocomplete="off"></textarea>
   </label>
-  <!-- <button type="submit">[ submit ]</button> -->
-  <input type="submit" value="[ submit ]">
+  <button type="submit">Send</button>
+</form>
