@@ -1,273 +1,77 @@
-<!doctype html>
-<html lang="en">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monty Hall Problem</title>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<meta property="og:title" content="Monty Hall Problem" />
-<meta property="og:description" content="A minimal web log." />
-<meta property="og:image" content="http://localhost:1313/og/og-image-54cb78a49c73dc54acbc940205705e44.svg" />
-<meta property="og:image:type" content='image/svg&#43;xml' />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/2025-03-20-monty-hall/" />
-
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Monty Hall Problem" />
-<meta name="twitter:description" content="A minimal web log." />
-<meta name="twitter:image" content="http://localhost:1313/og/og-image-54cb78a49c73dc54acbc940205705e44.svg" />
-<meta name="author" content="kbsoo!" />
-    <meta name="description" content="blog" />
-
-    <link rel="preload" href="/fonts/Newsreader.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Newsreader-italic.woff2" as="font" type="font/woff2" crossorigin />
-
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/custom.css" />
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <script src="/js/init-darkmode.js" defer></script>
-    <script src="/js/darkmode.js" defer></script>
-    <script src="/js/footnotes.js" defer></script><link rel="stylesheet" href="http://localhost:1313/static/css/custom.css"></head>
-
-
-<body>
-
-    <header>
-    <div>
-        <h1>
-            <a href="http://localhost:1313/">kbsoo</a>
-        </h1>
-        <div class="header-controls">
-            <div class="toggle-switch">
-                <input 
-                    type="checkbox" 
-                    id="darkModeToggle" 
-                    class="toggle-input"
-                    aria-label="Toggle dark mode"
-                />
-                <label for="darkModeToggle" class="toggle-label">
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-</header>
-
-
-    <main class="content-wrapper">
-        <article class="content-container">
-            <h1>Monty Hall Problem</h1>
-            <h4></h4>
-            <p class="author-date">
-                <time datetime="2025-03-20 21:25:00 &#43;0900 KST">March 20, 2025</time>
-            </p><p><img src="/images/monty-hall/1.png" alt="1"></p>
-<p>원래도 몬티-홀 문제를 알고는 있었지만 최근에 책을 읽는데 거기에 몬티-홀 문제가 나옴
-&ldquo;n값을 크게 해서 직접 실행해보고 싶다&quot;는 생각이 들었음</p>
-<p>아래 글이랑 똑같은 내용이지만 <a href="https://github.com/kbsooo/nn-zero-to-hero/blob/main/monty_hall.ipynb">github</a>에도 올렸으니 참고하실 분은 참고하시길</p>
-<h2 id="코드">코드<a hidden class="anchor" aria-hidden="true" href="#코드">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">monty_hall</span>(n):
-</span></span><span style="display:flex;"><span>    switch_wins <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 문을 바꿔서 이긴 횟수</span>
-</span></span><span style="display:flex;"><span>    stay_wins <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>    <span style="color:#75715e"># 문을 유지해서 이긴 횟수</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n):
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 자동차가 있는 문을 무작위로 설정 (0, 1, 2 중 하나)</span>
-</span></span><span style="display:flex;"><span>        car <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 참가자가 문을 무작위로 선택 (0, 1, 2 중 하나)</span>
-</span></span><span style="display:flex;"><span>        choice <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 사회자가 염소가 있는 문을 열음</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 참가자가 선택하지 않은 문 중 자동차가 없는 문을 찾기</span>
-</span></span><span style="display:flex;"><span>        possible_doors <span style="color:#f92672">=</span> []  <span style="color:#75715e"># 빈 리스트를 만들어서 조건에 맞는 문을 추가</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> door <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> door <span style="color:#f92672">!=</span> choice <span style="color:#f92672">and</span> door <span style="color:#f92672">!=</span> car:
-</span></span><span style="display:flex;"><span>                possible_doors<span style="color:#f92672">.</span>append(door)
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 사회자가 열 문을 선택</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> possible_doors:  <span style="color:#75715e"># possible_doors가 비어있지 않으면</span>
-</span></span><span style="display:flex;"><span>            monty_opens <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice(possible_doors)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 참가자가 자동차를 선택한 경우, 나머지 문 중 하나를 무작위로 열음</span>
-</span></span><span style="display:flex;"><span>            remaining_doors <span style="color:#f92672">=</span> []  <span style="color:#75715e"># 빈 리스트를 만들어서 조건에 맞는 문을 추가</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> door <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> door <span style="color:#f92672">!=</span> choice:
-</span></span><span style="display:flex;"><span>                    remaining_doors<span style="color:#f92672">.</span>append(door)
-</span></span><span style="display:flex;"><span>            monty_opens <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice(remaining_doors)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 문을 바꾸는 경우: 참가자가 선택하지 않았고 사회자가 열지 않은 문을 찾기</span>
-</span></span><span style="display:flex;"><span>        switch_choice <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  <span style="color:#75715e"># 아직 선택된 문이 없음을 표시</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> door <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> door <span style="color:#f92672">!=</span> choice <span style="color:#f92672">and</span> door <span style="color:#f92672">!=</span> monty_opens:
-</span></span><span style="display:flex;"><span>                switch_choice <span style="color:#f92672">=</span> door
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>  <span style="color:#75715e"># 문을 하나 찾았으면 반복문 종료</span>
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 문을 바꿔서 이겼는지 확인</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> switch_choice <span style="color:#f92672">==</span> car:
-</span></span><span style="display:flex;"><span>            switch_wins <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 문을 유지해서 이겼는지 확인</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> choice <span style="color:#f92672">==</span> car:
-</span></span><span style="display:flex;"><span>            stay_wins <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> switch_wins, stay_wins
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000000</span>  <span style="color:#75715e"># 1억 번</span>
-</span></span><span style="display:flex;"><span>switch_wins, stay_wins <span style="color:#f92672">=</span> monty_hall(n)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 결과 출력</span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;문을 바꾸는 전략으로 자동차를 얻은 횟수: </span><span style="color:#e6db74">{</span>switch_wins<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;문을 유지하는 전략으로 자동차를 얻은 횟수: </span><span style="color:#e6db74">{</span>stay_wins<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;문을 바꾸는 전략의 승률: </span><span style="color:#e6db74">{</span>switch_wins <span style="color:#f92672">/</span> num_trials<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;문을 유지하는 전략의 승률: </span><span style="color:#e6db74">{</span>stay_wins <span style="color:#f92672">/</span> num_trials<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 시각화</span>
-</span></span><span style="display:flex;"><span>labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Switch&#39;</span>, <span style="color:#e6db74">&#39;Stay&#39;</span>]
-</span></span><span style="display:flex;"><span>wins <span style="color:#f92672">=</span> <span style="color:#f92672">****</span>[switch_wins, stay_wins]
-</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>bar(labels, wins, color<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#e6db74">&#39;green&#39;</span>])
-</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Number of Wins&#39;</span>)
-</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Monty Hall Problem Simulation (100M Trials)&#39;</span>)
-</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 문을 바꾸는 전략으로 자동차를 얻은 횟수: 66663787</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문을 유지하는 전략으로 자동차를 얻은 횟수: 33336213</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문을 바꾸는 전략의 승률: 0.6666</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문을 유지하는 전략의 승률: 0.3334</span>
-</span></span></code></pre></div><p><img src="/images/monty-hall/2.png" alt="2"></p>
-<p>이렇게 결과가 나왔다
-<strong>바꾸는게 유리하다</strong></p>
-<p>자 이제 확률적으로도 맞는지 한번 검증을 해보겠음</p>
-<h2 id="베이즈-정리">베이즈 정리<a hidden class="anchor" aria-hidden="true" href="#베이즈-정리">#</a></h2>
-<h3 id="몬티-홀-문제의-설정">몬티 홀 문제의 설정<a hidden class="anchor" aria-hidden="true" href="#몬티-홀-문제의-설정">#</a></h3>
-<ul>
-<li>세 개의 문(문1, 문2, 문3)이 있으며, 그 중 하나에 자동차가 있고 나머지 두 개에는 염소가 있음</li>
-<li>참가자가 한 문을 선택함 (ex: 문1)</li>
-<li>사회자는 참가자가 선택하지 않은 문 중 염소가 있는 문을 열어 보여줌 (ex: 문2)</li>
-<li>참가자는 처음 선택한 문을 유지하거나 남은 문 (ex: 문3)로 바꿀 수 있음</li>
-</ul>
-<p>참가자가 문을 바꾸면 자동차를 얻을 확률이 높아질까?</p>
-<h3 id="베이즈-정리의-공식">베이즈 정리의 공식<a hidden class="anchor" aria-hidden="true" href="#베이즈-정리의-공식">#</a></h3>
-<p>베이즈 정리는 사후 확률을 계산하는 데 사용됨
-$P(A|B) = \frac{P(B|A)\times P(A)}{P(B)}$</p>
-<ul>
-<li>$P(A|B)$ : 사건 B가 발생했을 때 사건 A가 발생할 확률 (사후 확률)</li>
-<li>$P(B|A)$: 사건 A가 발생했을 때 사건 B가 발생활 확률 (우도)</li>
-<li>$P(A)$: 사건 A의 사전 확률</li>
-<li>$P(B)$: 사건 B의 전체 확률</li>
-</ul>
-<h3 id="사건-정의">사건 정의<a hidden class="anchor" aria-hidden="true" href="#사건-정의">#</a></h3>
-<p>문제를 구체적으로 풀기 위해 가정하면:</p>
-<ul>
-<li>참가자가 <strong>문1</strong>을 선택함</li>
-<li>사회자가 <strong>문2</strong>를 열었고, 그 문 뒤에는 염소가 있었음</li>
-</ul>
-<p>이제 알고 싶은 것</p>
-<ul>
-<li>사회자가 <strong>문2</strong>를 열었을 때, 자동차가 <strong>문1</strong>에 있을 확률 vs <strong>문3</strong>에 있을 확률</li>
-</ul>
-<h3 id="사건-설정">사건 설정<a hidden class="anchor" aria-hidden="true" href="#사건-설정">#</a></h3>
-<ul>
-<li>$A$: 자동차가 문1에 있는 사건</li>
-<li>$B$: 사회자가 문2를 여는 사건
-구하고 싶은 것은 $P(A|B)$</li>
-</ul>
-<p>즉, 사회자가 문2를 열었을 때 자동차가 문1에 있을 확률</p>
-<h3 id="1-사전-확률-pa">1. 사전 확률 $P(A)$<a hidden class="anchor" aria-hidden="true" href="#1-사전-확률-pa">#</a></h3>
-<p>자동차는 처음에 세 개의 문 중 하나에 무작위에 배치되므로: <!-- raw HTML omitted -->
-$P(A) = P(자동차가 문1에 있음) = \frac{1}{3}$</p>
-<h3 id="2-우도-pba">2. 우도 $P(B|A)$<a hidden class="anchor" aria-hidden="true" href="#2-우도-pba">#</a></h3>
-<p>$P(B|A)$는 자동차가 <strong>문1</strong>에 있을 때 사회자가 <strong>문</strong>2를 열 확률</p>
-<ul>
-<li>자동차가 문1에 있으면, 사회자는 참가자가 선택하지 않은 문2와 문3중 하나를 열어야 함 (둘다 염소)</li>
-<li>사회자가 문2와 문3을 열 확률은 각각 절반이므로: $P(B|A) = \frac{1}{2}$</li>
-</ul>
-<h3 id="3-전체-확률-pb">3. 전체 확률 $P(B)$<a hidden class="anchor" aria-hidden="true" href="#3-전체-확률-pb">#</a></h3>
-<p>$P(B)$는 사회자가 문2를 열 확률. 이는 자동차의 위치에 따라 달라지므로, 전체 확률의 법칙을 사용해 계산:
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Monty Hall Problem</title>
+<meta property="og:title" content="Monty Hall Problem"><meta property="og:description" content="A minimal web log."><meta property="og:image" content="https://kbsooo.github.io/og/og-image-54cb78a49c73dc54acbc940205705e44.svg"><meta property="og:image:type" content='image/svg+xml'><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:type" content="website"><meta property="og:url" content="https://kbsooo.github.io/2025-03-20-monty-hall/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Monty Hall Problem"><meta name=twitter:description content="A minimal web log."><meta name=twitter:image content="https://kbsooo.github.io/og/og-image-54cb78a49c73dc54acbc940205705e44.svg"><meta name=author content="kbsoo!"><meta name=description content="blog"><link rel=preload href=/fonts/Newsreader.woff2 as=font type=font/woff2 crossorigin><link rel=preload href=/fonts/Newsreader-italic.woff2 as=font type=font/woff2 crossorigin><link rel=stylesheet href=/css/styles.css><link rel=stylesheet href=/css/custom.css><link rel=icon type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon href=/apple-touch-icon.png><script src=/js/init-darkmode.js defer></script><script src=/js/darkmode.js defer></script><script src=/js/footnotes.js defer></script><link rel=stylesheet href=https://kbsooo.github.io/static/css/custom.css></head><body><header><div><h1><a href=https://kbsooo.github.io/>kbsoo</a></h1><div class=header-controls><div class=toggle-switch><input type=checkbox id=darkModeToggle class=toggle-input aria-label="Toggle dark mode">
+<label for=darkModeToggle class=toggle-label><span class=toggle-slider></span></label></div></div></div></header><main class=content-wrapper><article class=content-container><h1>Monty Hall Problem</h1><h4></h4><p class=author-date><time datetime="2025-03-20 21:25:00 +0900 KST">March 20, 2025</time></p><p><img src=/images/monty-hall/1.png alt=1></p><p>원래도 몬티-홀 문제를 알고는 있었지만 최근에 책을 읽는데 거기에 몬티-홀 문제가 나옴
+&ldquo;n값을 크게 해서 직접 실행해보고 싶다"는 생각이 들었음</p><p>아래 글이랑 똑같은 내용이지만 <a href=https://github.com/kbsooo/nn-zero-to-hero/blob/main/monty_hall.ipynb>github</a>에도 올렸으니 참고하실 분은 참고하시길</p><h2 id=코드>코드<a hidden class=anchor aria-hidden=true href=#코드>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> random
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>monty_hall</span>(n):
+</span></span><span style=display:flex><span>    switch_wins <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>  <span style=color:#75715e># 문을 바꿔서 이긴 횟수</span>
+</span></span><span style=display:flex><span>    stay_wins <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>    <span style=color:#75715e># 문을 유지해서 이긴 횟수</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(n):
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 자동차가 있는 문을 무작위로 설정 (0, 1, 2 중 하나)</span>
+</span></span><span style=display:flex><span>        car <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 참가자가 문을 무작위로 선택 (0, 1, 2 중 하나)</span>
+</span></span><span style=display:flex><span>        choice <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 사회자가 염소가 있는 문을 열음</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 참가자가 선택하지 않은 문 중 자동차가 없는 문을 찾기</span>
+</span></span><span style=display:flex><span>        possible_doors <span style=color:#f92672>=</span> []  <span style=color:#75715e># 빈 리스트를 만들어서 조건에 맞는 문을 추가</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> door <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>3</span>):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> door <span style=color:#f92672>!=</span> choice <span style=color:#f92672>and</span> door <span style=color:#f92672>!=</span> car:
+</span></span><span style=display:flex><span>                possible_doors<span style=color:#f92672>.</span>append(door)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 사회자가 열 문을 선택</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> possible_doors:  <span style=color:#75715e># possible_doors가 비어있지 않으면</span>
+</span></span><span style=display:flex><span>            monty_opens <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>choice(possible_doors)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 참가자가 자동차를 선택한 경우, 나머지 문 중 하나를 무작위로 열음</span>
+</span></span><span style=display:flex><span>            remaining_doors <span style=color:#f92672>=</span> []  <span style=color:#75715e># 빈 리스트를 만들어서 조건에 맞는 문을 추가</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> door <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>3</span>):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> door <span style=color:#f92672>!=</span> choice:
+</span></span><span style=display:flex><span>                    remaining_doors<span style=color:#f92672>.</span>append(door)
+</span></span><span style=display:flex><span>            monty_opens <span style=color:#f92672>=</span> random<span style=color:#f92672>.</span>choice(remaining_doors)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 문을 바꾸는 경우: 참가자가 선택하지 않았고 사회자가 열지 않은 문을 찾기</span>
+</span></span><span style=display:flex><span>        switch_choice <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>  <span style=color:#75715e># 아직 선택된 문이 없음을 표시</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> door <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>3</span>):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> door <span style=color:#f92672>!=</span> choice <span style=color:#f92672>and</span> door <span style=color:#f92672>!=</span> monty_opens:
+</span></span><span style=display:flex><span>                switch_choice <span style=color:#f92672>=</span> door
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>break</span>  <span style=color:#75715e># 문을 하나 찾았으면 반복문 종료</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 문을 바꿔서 이겼는지 확인</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> switch_choice <span style=color:#f92672>==</span> car:
+</span></span><span style=display:flex><span>            switch_wins <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 문을 유지해서 이겼는지 확인</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> choice <span style=color:#f92672>==</span> car:
+</span></span><span style=display:flex><span>            stay_wins <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> switch_wins, stay_wins
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>n <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000000</span>  <span style=color:#75715e># 1억 번</span>
+</span></span><span style=display:flex><span>switch_wins, stay_wins <span style=color:#f92672>=</span> monty_hall(n)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 결과 출력</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;문을 바꾸는 전략으로 자동차를 얻은 횟수: </span><span style=color:#e6db74>{</span>switch_wins<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;문을 유지하는 전략으로 자동차를 얻은 횟수: </span><span style=color:#e6db74>{</span>stay_wins<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;문을 바꾸는 전략의 승률: </span><span style=color:#e6db74>{</span>switch_wins <span style=color:#f92672>/</span> num_trials<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;문을 유지하는 전략의 승률: </span><span style=color:#e6db74>{</span>stay_wins <span style=color:#f92672>/</span> num_trials<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 시각화</span>
+</span></span><span style=display:flex><span>labels <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#39;Switch&#39;</span>, <span style=color:#e6db74>&#39;Stay&#39;</span>]
+</span></span><span style=display:flex><span>wins <span style=color:#f92672>=</span> <span style=color:#f92672>****</span>[switch_wins, stay_wins]
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>bar(labels, wins, color<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;blue&#39;</span>, <span style=color:#e6db74>&#39;green&#39;</span>])
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#39;Number of Wins&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;Monty Hall Problem Simulation (100M Trials)&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 문을 바꾸는 전략으로 자동차를 얻은 횟수: 66663787</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 문을 유지하는 전략으로 자동차를 얻은 횟수: 33336213</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 문을 바꾸는 전략의 승률: 0.6666</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 문을 유지하는 전략의 승률: 0.3334</span>
+</span></span></code></pre></div><p><img src=/images/monty-hall/2.png alt=2></p><p>이렇게 결과가 나왔다
+<strong>바꾸는게 유리하다</strong></p><p>자 이제 확률적으로도 맞는지 한번 검증을 해보겠음</p><h2 id=베이즈-정리>베이즈 정리<a hidden class=anchor aria-hidden=true href=#베이즈-정리>#</a></h2><h3 id=몬티-홀-문제의-설정>몬티 홀 문제의 설정<a hidden class=anchor aria-hidden=true href=#몬티-홀-문제의-설정>#</a></h3><ul><li>세 개의 문(문1, 문2, 문3)이 있으며, 그 중 하나에 자동차가 있고 나머지 두 개에는 염소가 있음</li><li>참가자가 한 문을 선택함 (ex: 문1)</li><li>사회자는 참가자가 선택하지 않은 문 중 염소가 있는 문을 열어 보여줌 (ex: 문2)</li><li>참가자는 처음 선택한 문을 유지하거나 남은 문 (ex: 문3)로 바꿀 수 있음</li></ul><p>참가자가 문을 바꾸면 자동차를 얻을 확률이 높아질까?</p><h3 id=베이즈-정리의-공식>베이즈 정리의 공식<a hidden class=anchor aria-hidden=true href=#베이즈-정리의-공식>#</a></h3><p>베이즈 정리는 사후 확률을 계산하는 데 사용됨
+$P(A|B) = \frac{P(B|A)\times P(A)}{P(B)}$</p><ul><li>$P(A|B)$ : 사건 B가 발생했을 때 사건 A가 발생할 확률 (사후 확률)</li><li>$P(B|A)$: 사건 A가 발생했을 때 사건 B가 발생활 확률 (우도)</li><li>$P(A)$: 사건 A의 사전 확률</li><li>$P(B)$: 사건 B의 전체 확률</li></ul><h3 id=사건-정의>사건 정의<a hidden class=anchor aria-hidden=true href=#사건-정의>#</a></h3><p>문제를 구체적으로 풀기 위해 가정하면:</p><ul><li>참가자가 <strong>문1</strong>을 선택함</li><li>사회자가 <strong>문2</strong>를 열었고, 그 문 뒤에는 염소가 있었음</li></ul><p>이제 알고 싶은 것</p><ul><li>사회자가 <strong>문2</strong>를 열었을 때, 자동차가 <strong>문1</strong>에 있을 확률 vs <strong>문3</strong>에 있을 확률</li></ul><h3 id=사건-설정>사건 설정<a hidden class=anchor aria-hidden=true href=#사건-설정>#</a></h3><ul><li>$A$: 자동차가 문1에 있는 사건</li><li>$B$: 사회자가 문2를 여는 사건
+구하고 싶은 것은 $P(A|B)$</li></ul><p>즉, 사회자가 문2를 열었을 때 자동차가 문1에 있을 확률</p><h3 id=1-사전-확률-pa>1. 사전 확률 $P(A)$<a hidden class=anchor aria-hidden=true href=#1-사전-확률-pa>#</a></h3><p>자동차는 처음에 세 개의 문 중 하나에 무작위에 배치되므로: $P(A) = P(자동차가 문1에 있음) = \frac{1}{3}$</p><h3 id=2-우도-pba>2. 우도 $P(B|A)$<a hidden class=anchor aria-hidden=true href=#2-우도-pba>#</a></h3><p>$P(B|A)$는 자동차가 <strong>문1</strong>에 있을 때 사회자가 <strong>문</strong>2를 열 확률</p><ul><li>자동차가 문1에 있으면, 사회자는 참가자가 선택하지 않은 문2와 문3중 하나를 열어야 함 (둘다 염소)</li><li>사회자가 문2와 문3을 열 확률은 각각 절반이므로: $P(B|A) = \frac{1}{2}$</li></ul><h3 id=3-전체-확률-pb>3. 전체 확률 $P(B)$<a hidden class=anchor aria-hidden=true href=#3-전체-확률-pb>#</a></h3><p>$P(B)$는 사회자가 문2를 열 확률. 이는 자동차의 위치에 따라 달라지므로, 전체 확률의 법칙을 사용해 계산:
 $P(B) = P(B|A) \times P(A) + P(B|자동차가 문2에 있음) \times P(자동차가 문2에 있음)$
-$ + P(B|자동차가 문3에 있음) \times P(자동차가 문3에 있음)$</p>
-<p>각 경우를 계산해보면</p>
-<ol>
-<li><strong>자동차가 문1에 있을 때:</strong></li>
-</ol>
-<ul>
-<li>$P(B|A) = \frac{1}{2}$</li>
-<li>$P(A) = \frac{1}{3}$</li>
-<li>$P(A|B) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}$</li>
-</ul>
-<ol start="2">
-<li><strong>자동차가 문2에 있을 때:</strong></li>
-</ol>
-<ul>
-<li>자동차가 문2에 있으면, 사회자는 문2를 열 수 없음</li>
-<li>따라서 $P(B|자동차가 문2에 있음) = 0$</li>
-<li>$P(자동차가 문2에 있음) = \frac{1}{3}$</li>
-<li>$P(B|자동차가 문2에 있음) \times P(자동차가 문2에 있음) = 0 \times \frac{1}{3} = 0$</li>
-</ul>
-<ol start="3">
-<li><strong>자동차가 문3에 있을 때:</strong></li>
-</ol>
-<ul>
-<li>자동차가 문3에 있으면, 참가자는 문1을 선택했으므로 사회자는 문2를 열어야 함 (문2는 염소가 있음)</li>
-<li>따라서 $P(B|자동차가 문3에 있음) = 1$</li>
-<li>$P(자동차가 문3에 있음) = \frac{1}{3}$</li>
-<li>$P(B|자동차가 문3에 있음) \times P(자동차가 문3에 있음) = 1 \times \frac{1}{3} = \frac{1}{3}$</li>
-</ul>
-<p>이제 전체 확률을 합산하면:
-$P(B) = \frac{1}{6} + 0 + \frac{1}{3} = \frac{1}{6} + \frac{2}{6} = \frac{3}{6} = \frac{1}{2}$</p>
-<h3 id="4-사후-확률-pab-계산">4. 사후 확률 $P(A|B)$ 계산<a hidden class="anchor" aria-hidden="true" href="#4-사후-확률-pab-계산">#</a></h3>
-<p>이제 베이즈 정리를 사용해 $P(A|B)$를 구함:
-$P(A|B) = \frac{P(B|A)\times P(A)}{P(B)} = \frac{(\frac{1}{2}) \times (\frac{1}{3})}{\frac{1}{2}} = \frac{\frac{1}{6}}{\frac{1}{2}} = \frac{1}{6} \times 2 = \frac{1}{3}$</p>
-<p>따라서 사회자가 문2를 열었을 때 자동차가 문1에 있을 확률은 $\frac{1}{3}$</p>
-<h3 id="자동차가-문3에-있을-확률">자동차가 문3에 있을 확률<a hidden class="anchor" aria-hidden="true" href="#자동차가-문3에-있을-확률">#</a></h3>
-<p>자동차는 문1 또는 문3에만 있을 수 있음 (문2는 염소가 있음),</p>
-<p>따라서 자동차가 문3에 있을 확률은:</p>
-<p>$P(자동차가 문3에 있음|B) = 1 - P(A|B) = 1 - \frac{1}{3} = \frac{2}{3}$</p>
-<h3 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h3>
-<ul>
-<li>참가자가 <strong>문1을 유지</strong>하면 자동차를 얻을 확률: $\frac{1}{3}$</li>
-<li>참가자가 <strong>문3으로 바꾸면</strong> 자동차를 얻을 확률: $\frac{1}{3}$</li>
-</ul>
-<p>이렇게 코드로 돌려본 것과 확률적으로 일치함을 알 수 있었음!</p>
-
-
-        </article>
-    </main>
-
-    <footer>
-    <div class="footer-content">
-        <p>&copy; 2025 - kbsoo</p>
-    </div>
-</footer>
-
-</body>
-
-</html>
+$ + P(B|자동차가 문3에 있음) \times P(자동차가 문3에 있음)$</p><p>각 경우를 계산해보면</p><ol><li><strong>자동차가 문1에 있을 때:</strong></li></ol><ul><li>$P(B|A) = \frac{1}{2}$</li><li>$P(A) = \frac{1}{3}$</li><li>$P(A|B) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}$</li></ul><ol start=2><li><strong>자동차가 문2에 있을 때:</strong></li></ol><ul><li>자동차가 문2에 있으면, 사회자는 문2를 열 수 없음</li><li>따라서 $P(B|자동차가 문2에 있음) = 0$</li><li>$P(자동차가 문2에 있음) = \frac{1}{3}$</li><li>$P(B|자동차가 문2에 있음) \times P(자동차가 문2에 있음) = 0 \times \frac{1}{3} = 0$</li></ul><ol start=3><li><strong>자동차가 문3에 있을 때:</strong></li></ol><ul><li>자동차가 문3에 있으면, 참가자는 문1을 선택했으므로 사회자는 문2를 열어야 함 (문2는 염소가 있음)</li><li>따라서 $P(B|자동차가 문3에 있음) = 1$</li><li>$P(자동차가 문3에 있음) = \frac{1}{3}$</li><li>$P(B|자동차가 문3에 있음) \times P(자동차가 문3에 있음) = 1 \times \frac{1}{3} = \frac{1}{3}$</li></ul><p>이제 전체 확률을 합산하면:
+$P(B) = \frac{1}{6} + 0 + \frac{1}{3} = \frac{1}{6} + \frac{2}{6} = \frac{3}{6} = \frac{1}{2}$</p><h3 id=4-사후-확률-pab-계산>4. 사후 확률 $P(A|B)$ 계산<a hidden class=anchor aria-hidden=true href=#4-사후-확률-pab-계산>#</a></h3><p>이제 베이즈 정리를 사용해 $P(A|B)$를 구함:
+$P(A|B) = \frac{P(B|A)\times P(A)}{P(B)} = \frac{(\frac{1}{2}) \times (\frac{1}{3})}{\frac{1}{2}} = \frac{\frac{1}{6}}{\frac{1}{2}} = \frac{1}{6} \times 2 = \frac{1}{3}$</p><p>따라서 사회자가 문2를 열었을 때 자동차가 문1에 있을 확률은 $\frac{1}{3}$</p><h3 id=자동차가-문3에-있을-확률>자동차가 문3에 있을 확률<a hidden class=anchor aria-hidden=true href=#자동차가-문3에-있을-확률>#</a></h3><p>자동차는 문1 또는 문3에만 있을 수 있음 (문2는 염소가 있음),</p><p>따라서 자동차가 문3에 있을 확률은:</p><p>$P(자동차가 문3에 있음|B) = 1 - P(A|B) = 1 - \frac{1}{3} = \frac{2}{3}$</p><h3 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h3><ul><li>참가자가 <strong>문1을 유지</strong>하면 자동차를 얻을 확률: $\frac{1}{3}$</li><li>참가자가 <strong>문3으로 바꾸면</strong> 자동차를 얻을 확률: $\frac{1}{3}$</li></ul><p>이렇게 코드로 돌려본 것과 확률적으로 일치함을 알 수 있었음!</p></article></main><footer><div class=footer-content><p>&copy; 2025 - kbsoo</p></div></footer></body></html>
