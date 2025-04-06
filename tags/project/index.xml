@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Project on kbsoo</title><link>https://kbsooo.github.io/tags/project/</link><description>Recent content in Project on kbsoo</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 04 Mar 2025 00:00:00 +0900</lastBuildDate><atom:link href="https://kbsooo.github.io/tags/project/index.xml" rel="self" type="application/rss+xml"/><item><title>HOMERUN</title><link>https://kbsooo.github.io/2025-03-04-homerun/</link><pubDate>Tue, 04 Mar 2025 00:00:00 +0900</pubDate><guid>https://kbsooo.github.io/2025-03-04-homerun/</guid><description>&lt;p>기흥역 &amp;lt;-&amp;gt; 명지대역 교통수단 정보 제공 및 셔틀버스 운행 시간 예측 웹 애플리케이션&lt;/p>
+&lt;h3 id="overview">Overview&lt;/h3>
+&lt;p>기흥역과 명지대학교를 오가는 명지인들의 &lt;strong>통학 효율성 항상&lt;/strong>을 위한 종합 교통정보 웹 사이트 개발 프로젝트&lt;/p>
+&lt;p>현대 사회에서 시간 관리와 이동 효율성은 학섭 성취도에 직접적인 영향을 미치는 핵심 요소로 부각되고 있습니다. 이에 기흥역 &amp;lt;-&amp;gt; 명지대학교 구간의 셔틀버스와 대체 교통수단 정보 등을 통합적으로 제공함으로써, 학생들의 시간 자원을 최적화하고 더 나은 학습 환경을 조성하고자 하였습니다.&lt;/p>
+&lt;h3 id="what-i-worked-on">What I worked on&lt;/h3>
+&lt;ul>
+&lt;li>기반 프로젝트 (HOMERUN1)
+&lt;ul>
+&lt;li>카카오 OAuth 로그인 구현&lt;/li>
+&lt;li>택시 그룹 모집 및 그룹 실시간 채팅 구현&lt;/li>
+&lt;li>셔틀버스 도착 시간 예상 모델 제작&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>HOMERUN2
+&lt;ul>
+&lt;li>everything!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://kbsooo.github.io/images/HOMERUN/1.png" alt="mainPage">&lt;/p></description></item><item><title>InTheView</title><link>https://kbsooo.github.io/2024-08-08-intheview/</link><pubDate>Thu, 08 Aug 2024 00:00:00 +0900</pubDate><guid>https://kbsooo.github.io/2024-08-08-intheview/</guid><description>&lt;p>면접 인터뷰 데이터 분석 및 답변 평가 웹 애플리케이션&lt;/p>
+&lt;p>&lt;a href="https://github.com/v21c/InTheView">https://github.com/v21c/InTheView&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://github.com/v21c/model">https://github.com/v21c/model&lt;/a>&lt;/p>
+&lt;h3 id="what-i-worked-on">What I worked on&lt;/h3>
+&lt;ul>
+&lt;li>면접 데이터를 기반으로 한 예상 질문 모델 fine-tuning&lt;/li>
+&lt;li>면접자의 답변에 따른 점수 측정&lt;/li>
+&lt;li>면접 데이터, 채팅 내역 MongoDB와 연결&lt;/li>
+&lt;/ul></description></item></channel></rss>

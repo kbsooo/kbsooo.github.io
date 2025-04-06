@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reading on kbsoo</title>
+    <link>http://localhost:1313/categories/reading/</link>
+    <description>Recent content in Reading on kbsoo</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Mar 2025 15:44:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/reading/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WEF - Future of Jobs Report (2)</title>
+      <link>http://localhost:1313/2025-03-05-future-of-jobs-report-2/</link>
+      <pubDate>Wed, 05 Mar 2025 15:44:00 +0900</pubDate>
+      <guid>http://localhost:1313/2025-03-05-future-of-jobs-report-2/</guid>
+      <description>&lt;h2 id=&#34;jobs-outlook&#34;&gt;Jobs outlook&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/assets/images/Future-of-Jobs-Report-(2)/1.png&#34; alt=&#34;Global employment change by 2030&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;total-job-growth-and-loss&#34;&gt;Total job growth and loss&lt;/h3&gt;&#xA;&lt;p&gt;응답자들의 일자리 성장 및 감소에 대한 기대치와 국제노동기구(ILO)가 수집한 글로벌 고용 데이터를 결합하여 보면,&#xA;2030년까지 새로운 일자리 창출과 대체가 오늘날의 총 정규 일자리의 **22%**에 해당할 것이라고 추정함&lt;/p&gt;&#xA;&lt;p&gt;거시적 추세로 인해 창출되는 새로운 일자리는 &lt;strong&gt;170,000,000자리(총 일자리의 14%)&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;하지만 현재 일자리 **92,000,000자리(총 일자리의 8%)**가 대체될 것임&lt;/p&gt;&#xA;&lt;p&gt;-&amp;gt; 2030년까지 **78,000,000자리(총 일자리의 7%)**가 순증가할 것으로 전망&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/assets/images/Future-of-Jobs-Report-(2)/2.png&#34; alt=&#34;Fastest-growing and fastest-declining jobs, 2025-2030&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;growing-and-declining-jobs&#34;&gt;Growing and declining jobs&lt;/h3&gt;&#xA;&lt;p&gt;2030년까지 비율적으로 가장 빠르게 성장하는 직무는 AI 및 로봇 공학의 발전과 디지털 접근성 증가와 같은 기술 발전에 의해 주도되는 경향이 있음&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>WEF - Future of Jobs Report (1)</title>
+      <link>http://localhost:1313/2025-02-27-future-of-jobs-report-1/</link>
+      <pubDate>Thu, 27 Feb 2025 15:44:00 +0900</pubDate>
+      <guid>http://localhost:1313/2025-02-27-future-of-jobs-report-1/</guid>
+      <description>&lt;h2 id=&#34;drivers-of-labour-market-transformation&#34;&gt;Drivers of labour-market transformation&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/assets/images/Future-of-Jobs-Report-(1)/1.png&#34; alt=&#34;Macrotrends driving business transformation&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;60%의 고용주는 디지털 접근성 확대가 그들의 비즈니스를 변화시킬 것이라고 예상함&lt;/p&gt;&#xA;&lt;p&gt;이러한 디지털 접근성 확대는 신기술이 노동 시장을 변화시키는 중요한 촉진 요인으로 작용하고 있음&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/assets/images/Future-of-Jobs-Report-(1)/2.png&#34; alt=&#34;Technology trends driving business transformation, 2025-2030&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;AI 및 정보 처리 기술 86%&lt;/p&gt;&#xA;&lt;p&gt;로봇과 자율 시스템 58%&lt;/p&gt;&#xA;&lt;p&gt;에너지 생성 및 저장 기술 41%&lt;/p&gt;&#xA;&lt;p&gt;앞으로(2025-2030) 이 3가지 기술이 비즈니스에 가장 큰 영향을 미칠 것이라고 고용주들이 예상함&lt;/p&gt;&#xA;&lt;h3 id=&#34;technological-change&#34;&gt;Technological change&lt;/h3&gt;&#xA;&lt;p&gt;2022년 11월 Chat GPT가 출시된 이후 AI에 대한 투자 흐름은 거의 8배 증가함&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
