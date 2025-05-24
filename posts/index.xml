@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on KBSOO</title><link>https://example.org/posts/</link><description>Recent content in Posts on KBSOO</description><generator>Hugo -- 0.147.5</generator><language>en-us</language><lastBuildDate>Sun, 23 Mar 2025 14:51:00 +0900</lastBuildDate><atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>The Structure of Agents (2)</title><link>https://example.org/posts/2025-03-23-the-structure-of-agents-2/</link><pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate><guid>https://example.org/posts/2025-03-23-the-structure-of-agents-2/</guid><description>&lt;p>&lt;img alt="6" loading="lazy" src="https://example.org/images/the-structure-of-agents/6.webp">&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on KBSOO</title><link>https://kbsooo.github.io/posts/</link><description>Recent content in Posts on KBSOO</description><generator>Hugo -- 0.147.5</generator><language>en-us</language><lastBuildDate>Sun, 23 Mar 2025 14:51:00 +0900</lastBuildDate><atom:link href="https://kbsooo.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>The Structure of Agents (2)</title><link>https://kbsooo.github.io/posts/2025-03-23-the-structure-of-agents-2/</link><pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-23-the-structure-of-agents-2/</guid><description>&lt;p>&lt;img alt="6" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/6.webp">&lt;/p>
 &lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
 &lt;h3 id="model-based-reflex-agents">Model-based reflex agents&lt;/h3>
 &lt;p>부분 관찰 가능성(partial observability)을 다루는 가장 효과적인 방법은 에이전트가 현재 볼 수 없는 세계의 부분을 추적하는 것&lt;/p>
 &lt;p>즉, 에이전트는 지각 이력(percept history)에 의존하는 일종의 **내부 상태(internal state)**를 유지해야 하며, 이를 통해 현재 상태에서 관찰되지 않는 측면을 어느정도 반영할 수 있어야 함&lt;/p>
-&lt;p>&lt;img alt="3" loading="lazy" src="https://example.org/images/the-structure-of-agents/3.png">&lt;/p>
+&lt;p>&lt;img alt="3" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/3.png">&lt;/p>
 &lt;p>&lt;strong>Knowledge required to update internal state&lt;/strong>&lt;/p>
 &lt;ol>
 &lt;li>&lt;strong>세계가 어떻게 변하는지에 대한 정보&lt;/strong>&lt;/li>
@@ -21,7 +21,7 @@
 &lt;li>카메라 젖으면 이미지에 물방울 모양의 물체가 나타나 도로를 부분적으로 가림&lt;/li>
 &lt;li>**센서 모델(sensor model)**이라고 불림&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Role of Model-based agent&lt;/strong>&lt;/p></description></item><item><title>The Structure of Agents (1)</title><link>https://example.org/posts/2025-03-22-the-structure-of-agents-1/</link><pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate><guid>https://example.org/posts/2025-03-22-the-structure-of-agents-1/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://example.org/images/the-structure-of-agents/1.png">&lt;/p>
+&lt;p>&lt;strong>Role of Model-based agent&lt;/strong>&lt;/p></description></item><item><title>The Structure of Agents (1)</title><link>https://kbsooo.github.io/posts/2025-03-22-the-structure-of-agents-1/</link><pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-22-the-structure-of-agents-1/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/1.png">&lt;/p>
 &lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
 &lt;h3 id="에이전트의-내부-작동-방식">에이전트의 내부 작동 방식&lt;/h3>
 &lt;p>보통 에이전트(인공지능 주체)를 설명할 때 주로 &lt;strong>행동&lt;/strong>에 초점을 맞춰서 이야기함&lt;/p>
@@ -29,7 +29,7 @@
 &lt;p>예를 들어, &amp;ldquo;문이 보이면 문을 연다&amp;rdquo;&lt;/p>
 &lt;p>그런데 에이전트의 &lt;strong>내부&lt;/strong>가 어떻게 작동되는지, 어떻게 설계되고 만들어지는지에 대해 알아보겠음&lt;/p>
 &lt;p>인공지능(AI)의 주요 역할은 **에이전트 프로그램(agent program)**을 설계하는 것&lt;/p>
-&lt;p>이 프로그램은 **에이전트 함수(agent function)**을 구현하는데, 에이전트 함수란 쉽게 말해 &lt;strong>지각을 행동으로 연결하는 규칙&lt;/strong>&lt;/p></description></item><item><title>Monty Hall Problem</title><link>https://example.org/posts/2025-03-20-monty-hall/</link><pubDate>Thu, 20 Mar 2025 21:25:00 +0900</pubDate><guid>https://example.org/posts/2025-03-20-monty-hall/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://example.org/images/monty-hall/1.png">&lt;/p>
+&lt;p>이 프로그램은 **에이전트 함수(agent function)**을 구현하는데, 에이전트 함수란 쉽게 말해 &lt;strong>지각을 행동으로 연결하는 규칙&lt;/strong>&lt;/p></description></item><item><title>Monty Hall Problem</title><link>https://kbsooo.github.io/posts/2025-03-20-monty-hall/</link><pubDate>Thu, 20 Mar 2025 21:25:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-20-monty-hall/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://kbsooo.github.io/images/monty-hall/1.png">&lt;/p>
 &lt;p>원래도 몬티-홀 문제를 알고는 있었지만 최근에 책을 읽는데 거기에 몬티-홀 문제가 나옴
 &amp;ldquo;n값을 크게 해서 직접 실행해보고 싶다&amp;quot;는 생각이 들었음&lt;/p>
 &lt;p>아래 글이랑 똑같은 내용이지만 &lt;a href="https://github.com/kbsooo/nn-zero-to-hero/blob/main/monty_hall.ipynb">github&lt;/a>에도 올렸으니 참고하실 분은 참고하시길&lt;/p>
@@ -190,7 +190,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 문을 유지하는 전략의 승률: 0.3334&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;img alt="2" loading="lazy" src="https://example.org/images/monty-hall/2.png">&lt;/p></description></item><item><title>Bayesian Optimization</title><link>https://example.org/posts/2025-03-17-bayesian-optimization/</link><pubDate>Mon, 17 Mar 2025 20:35:00 +0900</pubDate><guid>https://example.org/posts/2025-03-17-bayesian-optimization/</guid><description>&lt;h2 id="베이지안-최적화bayesian-optimization란">베이지안 최적화(Bayesian Optimization)란?&lt;/h2>
+&lt;/div>&lt;p>&lt;img alt="2" loading="lazy" src="https://kbsooo.github.io/images/monty-hall/2.png">&lt;/p></description></item><item><title>Bayesian Optimization</title><link>https://kbsooo.github.io/posts/2025-03-17-bayesian-optimization/</link><pubDate>Mon, 17 Mar 2025 20:35:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-17-bayesian-optimization/</guid><description>&lt;h2 id="베이지안-최적화bayesian-optimization란">베이지안 최적화(Bayesian Optimization)란?&lt;/h2>
 &lt;p>베이지안 최적화는 머신러닝에서 &lt;strong>하이퍼파라미터 튜닝&lt;/strong>을 똑똑하게, 그리고 효율적으로 수행하기 위한 방법. 하이퍼파라미터는 모델을 학습시키기 전에 사람이 직접 설정해야 하는 값들인데, 이 값들이 모델의 성능에 큰 영향을 미침. 예를 들어 학습률(learning rate)이나 트리의 깊이 같은 것들이 하이퍼파라미터.&lt;/p>
 &lt;p>문제는 이 값들을 무작정 시도해보는 건 시간도 오래 걸리고 비효율적이라는 점&lt;/p>
 &lt;h2 id="다른-하이퍼-파라미터-튜닝-방법">다른 하이퍼 파라미터 튜닝 방법&lt;/h2>
@@ -206,10 +206,10 @@
 &lt;li>&lt;strong>장점&lt;/strong>: 더 넓은 범위를 빠르게 탐색할 수 있음&lt;/li>
 &lt;li>&lt;strong>단점&lt;/strong>: 운이 나쁘면 좋은 조합을 놓칠 수도 있음&lt;/li>
 &lt;/ul>
-&lt;p>이런 문제들 때문에 베이지안 최적화가 등장함&lt;/p></description></item><item><title>Database Languages</title><link>https://example.org/posts/2025-03-16-database-languages/</link><pubDate>Sun, 16 Mar 2025 23:43:00 +0900</pubDate><guid>https://example.org/posts/2025-03-16-database-languages/</guid><description>&lt;p>데이터베이스 시스템은 데이터베이스 스키마(database schema)를 지정하기 위한 **Data-Definition Language(DDL)**와 데이터베이스 쿼리(query) 및 업데이트를 표현하기 위한 **Data-Manipulation Language(DML)**를 제공합니다.&lt;/p>
+&lt;p>이런 문제들 때문에 베이지안 최적화가 등장함&lt;/p></description></item><item><title>Database Languages</title><link>https://kbsooo.github.io/posts/2025-03-16-database-languages/</link><pubDate>Sun, 16 Mar 2025 23:43:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-16-database-languages/</guid><description>&lt;p>데이터베이스 시스템은 데이터베이스 스키마(database schema)를 지정하기 위한 **Data-Definition Language(DDL)**와 데이터베이스 쿼리(query) 및 업데이트를 표현하기 위한 **Data-Manipulation Language(DML)**를 제공합니다.&lt;/p>
 &lt;h3 id="data-definition-language">Data-Definition Language&lt;/h3>
 &lt;p>데이터베이스 스키마(database schema)는 데이터 정의 언어(DDL, Data-Definition Language)라는 특수 언어로 표현된 정의 집합으로 지정됩니다. DDL은 데이터의 추가적인 속성을 지정하는 데에도 사용됩니다.&lt;/p>
-&lt;p>데이터베이스 시스템에서 사용되는 저장 구조와 접근 방법은 **데이터 저장 및 정의 언어(data storage and definition language)**라는 특수한 DDL 유형의 문장 집합으로 지정됩니다. 이러한 문장은 데이터베이스 스키마의 구현 세부 사항을 정의하며, 이는 일반적으로 사용자에게 숨겨져 있습니다.&lt;/p></description></item><item><title>Levels of Abstraction</title><link>https://example.org/posts/2025-03-16-levels-of-abstraction/</link><pubDate>Sun, 16 Mar 2025 23:14:00 +0900</pubDate><guid>https://example.org/posts/2025-03-16-levels-of-abstraction/</guid><description>&lt;p>&lt;img alt="Levels of Abstraction" loading="lazy" src="https://example.org/images/database-system-concepts/1-2.png">&lt;/p>
+&lt;p>데이터베이스 시스템에서 사용되는 저장 구조와 접근 방법은 **데이터 저장 및 정의 언어(data storage and definition language)**라는 특수한 DDL 유형의 문장 집합으로 지정됩니다. 이러한 문장은 데이터베이스 스키마의 구현 세부 사항을 정의하며, 이는 일반적으로 사용자에게 숨겨져 있습니다.&lt;/p></description></item><item><title>Levels of Abstraction</title><link>https://kbsooo.github.io/posts/2025-03-16-levels-of-abstraction/</link><pubDate>Sun, 16 Mar 2025 23:14:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-16-levels-of-abstraction/</guid><description>&lt;p>&lt;img alt="Levels of Abstraction" loading="lazy" src="https://kbsooo.github.io/images/database-system-concepts/1-2.png">&lt;/p>
 &lt;h3 id="levels-of-abstraction">Levels of Abstraction&lt;/h3>
 &lt;ul>
 &lt;li>
@@ -228,7 +228,7 @@
 &lt;/li>
 &lt;li>
 &lt;p>&lt;strong>누가 다룸?&lt;/strong>
-Database Administrator(DBA)나 시스템 엔지니어가 다룸. 일반 사용자는 이 복잡한 물리적 세부사항을 알 필요가 없음&lt;/p></description></item><item><title>Binary Prediction with a Rainfall Dataset</title><link>https://example.org/posts/2025-03-12-binary-prediction-with-a-rainfall-dataset/</link><pubDate>Wed, 12 Mar 2025 19:06:00 +0900</pubDate><guid>https://example.org/posts/2025-03-12-binary-prediction-with-a-rainfall-dataset/</guid><description>&lt;p>&lt;img alt="Header" loading="lazy" src="https://example.org/images/Binary-Predictin-with-a-Rainfall-Dataset/header.png">&lt;/p>
+Database Administrator(DBA)나 시스템 엔지니어가 다룸. 일반 사용자는 이 복잡한 물리적 세부사항을 알 필요가 없음&lt;/p></description></item><item><title>Binary Prediction with a Rainfall Dataset</title><link>https://kbsooo.github.io/posts/2025-03-12-binary-prediction-with-a-rainfall-dataset/</link><pubDate>Wed, 12 Mar 2025 19:06:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-12-binary-prediction-with-a-rainfall-dataset/</guid><description>&lt;p>&lt;img alt="Header" loading="lazy" src="https://kbsooo.github.io/images/Binary-Predictin-with-a-Rainfall-Dataset/header.png">&lt;/p>
 &lt;h2 id="이-글은-kaggle의-binary-prediction-with-a-rainfall-dataset-경진대회를-다룹니다">이 글은 Kaggle의 &amp;ldquo;Binary Prediction with a Rainfall Dataset&amp;rdquo; 경진대회를 다룹니다.&lt;/h2>
 &lt;ul>
 &lt;li>&lt;strong>Kaggle 링크&lt;/strong>: &lt;a href="https://www.kaggle.com/competitions/playground-series-s5e3/overview">Binary Prediction with a Rainfall Dataset&lt;/a>&lt;/li>
@@ -298,24 +298,24 @@ Database Administrator(DBA)나 시스템 엔지니어가 다룸. 일반 사용�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="데이터-구조-분석">데이터 구조 분석&lt;/h3>
-&lt;p>데이터셋의 정보를 확인하면 다음과 같습니다:&lt;/p></description></item><item><title>WEF - Future of Jobs Report (2)</title><link>https://example.org/posts/2025-03-05-future-of-jobs-report-2/</link><pubDate>Wed, 05 Mar 2025 15:44:00 +0900</pubDate><guid>https://example.org/posts/2025-03-05-future-of-jobs-report-2/</guid><description>&lt;h2 id="jobs-outlook">Jobs outlook&lt;/h2>
-&lt;p>&lt;img alt="Global employment change by 2030" loading="lazy" src="https://example.org/images/Future-of-Jobs-Report-(2)/1.png">&lt;/p>
+&lt;p>데이터셋의 정보를 확인하면 다음과 같습니다:&lt;/p></description></item><item><title>WEF - Future of Jobs Report (2)</title><link>https://kbsooo.github.io/posts/2025-03-05-future-of-jobs-report-2/</link><pubDate>Wed, 05 Mar 2025 15:44:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-05-future-of-jobs-report-2/</guid><description>&lt;h2 id="jobs-outlook">Jobs outlook&lt;/h2>
+&lt;p>&lt;img alt="Global employment change by 2030" loading="lazy" src="https://kbsooo.github.io/images/Future-of-Jobs-Report-(2)/1.png">&lt;/p>
 &lt;h3 id="total-job-growth-and-loss">Total job growth and loss&lt;/h3>
 &lt;p>응답자들의 일자리 성장 및 감소에 대한 기대치와 국제노동기구(ILO)가 수집한 글로벌 고용 데이터를 결합하여 보면,
 2030년까지 새로운 일자리 창출과 대체가 오늘날의 총 정규 일자리의 **22%**에 해당할 것이라고 추정함&lt;/p>
 &lt;p>거시적 추세로 인해 창출되는 새로운 일자리는 &lt;strong>170,000,000자리(총 일자리의 14%)&lt;/strong>&lt;/p>
 &lt;p>하지만 현재 일자리 **92,000,000자리(총 일자리의 8%)**가 대체될 것임&lt;/p>
 &lt;p>-&amp;gt; 2030년까지 **78,000,000자리(총 일자리의 7%)**가 순증가할 것으로 전망&lt;/p>
-&lt;p>&lt;img alt="Fastest-growing and fastest-declining jobs, 2025-2030" loading="lazy" src="https://example.org/images/Future-of-Jobs-Report-(2)/2.png">&lt;/p>
+&lt;p>&lt;img alt="Fastest-growing and fastest-declining jobs, 2025-2030" loading="lazy" src="https://kbsooo.github.io/images/Future-of-Jobs-Report-(2)/2.png">&lt;/p>
 &lt;h3 id="growing-and-declining-jobs">Growing and declining jobs&lt;/h3>
-&lt;p>2030년까지 비율적으로 가장 빠르게 성장하는 직무는 AI 및 로봇 공학의 발전과 디지털 접근성 증가와 같은 기술 발전에 의해 주도되는 경향이 있음&lt;/p></description></item><item><title>WEF - Future of Jobs Report (1)</title><link>https://example.org/posts/2025-02-27-future-of-jobs-report-1/</link><pubDate>Thu, 27 Feb 2025 15:44:00 +0900</pubDate><guid>https://example.org/posts/2025-02-27-future-of-jobs-report-1/</guid><description>&lt;h2 id="drivers-of-labour-market-transformation">Drivers of labour-market transformation&lt;/h2>
-&lt;p>&lt;img alt="Macrotrends driving business transformation" loading="lazy" src="https://example.org/images/Future-of-Jobs-Report-(1)/1.png">&lt;/p>
+&lt;p>2030년까지 비율적으로 가장 빠르게 성장하는 직무는 AI 및 로봇 공학의 발전과 디지털 접근성 증가와 같은 기술 발전에 의해 주도되는 경향이 있음&lt;/p></description></item><item><title>WEF - Future of Jobs Report (1)</title><link>https://kbsooo.github.io/posts/2025-02-27-future-of-jobs-report-1/</link><pubDate>Thu, 27 Feb 2025 15:44:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-02-27-future-of-jobs-report-1/</guid><description>&lt;h2 id="drivers-of-labour-market-transformation">Drivers of labour-market transformation&lt;/h2>
+&lt;p>&lt;img alt="Macrotrends driving business transformation" loading="lazy" src="https://kbsooo.github.io/images/Future-of-Jobs-Report-(1)/1.png">&lt;/p>
 &lt;p>60%의 고용주는 디지털 접근성 확대가 그들의 비즈니스를 변화시킬 것이라고 예상함&lt;/p>
 &lt;p>이러한 디지털 접근성 확대는 신기술이 노동 시장을 변화시키는 중요한 촉진 요인으로 작용하고 있음&lt;/p>
-&lt;p>&lt;img alt="Technology trends driving business transformation, 2025-2030" loading="lazy" src="https://example.org/images/Future-of-Jobs-Report-(1)/2.png">&lt;/p>
+&lt;p>&lt;img alt="Technology trends driving business transformation, 2025-2030" loading="lazy" src="https://kbsooo.github.io/images/Future-of-Jobs-Report-(1)/2.png">&lt;/p>
 &lt;p>AI 및 정보 처리 기술 86%&lt;/p>
 &lt;p>로봇과 자율 시스템 58%&lt;/p>
 &lt;p>에너지 생성 및 저장 기술 41%&lt;/p>
 &lt;p>앞으로(2025-2030) 이 3가지 기술이 비즈니스에 가장 큰 영향을 미칠 것이라고 고용주들이 예상함&lt;/p>
 &lt;h3 id="technological-change">Technological change&lt;/h3>
-&lt;p>2022년 11월 Chat GPT가 출시된 이후 AI에 대한 투자 흐름은 거의 8배 증가함&lt;/p></description></item><item><title>Tracing the thoughts of an LLM</title><link>https://example.org/posts/tracing-the-thoughts/</link><pubDate>Mon, 01 Jan 2001 00:00:00 +0000</pubDate><guid>https://example.org/posts/tracing-the-thoughts/</guid><description>thoughts</description></item></channel></rss>
+&lt;p>2022년 11월 Chat GPT가 출시된 이후 AI에 대한 투자 흐름은 거의 8배 증가함&lt;/p></description></item><item><title>Tracing the thoughts of an LLM</title><link>https://kbsooo.github.io/posts/tracing-the-thoughts/</link><pubDate>Mon, 01 Jan 2001 00:00:00 +0000</pubDate><guid>https://kbsooo.github.io/posts/tracing-the-thoughts/</guid><description>thoughts</description></item></channel></rss>
