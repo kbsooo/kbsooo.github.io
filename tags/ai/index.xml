@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on kbsoo</title><link>https://kbsooo.github.io/tags/ai/</link><description>Recent content in AI on kbsoo</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 23 Mar 2025 14:51:00 +0900</lastBuildDate><atom:link href="https://kbsooo.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>The Structure of Agents (2)</title><link>https://kbsooo.github.io/2025-03-23-the-structure-of-agents-2/</link><pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate><guid>https://kbsooo.github.io/2025-03-23-the-structure-of-agents-2/</guid><description>&lt;p>&lt;img src="https://kbsooo.github.io/images/the-structure-of-agents/6.webp" alt="6">&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on KBSOO</title><link>https://example.org/tags/ai/</link><description>Recent content in AI on KBSOO</description><generator>Hugo -- 0.147.5</generator><language>en-us</language><lastBuildDate>Sun, 23 Mar 2025 14:51:00 +0900</lastBuildDate><atom:link href="https://example.org/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>The Structure of Agents (2)</title><link>https://example.org/posts/2025-03-23-the-structure-of-agents-2/</link><pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate><guid>https://example.org/posts/2025-03-23-the-structure-of-agents-2/</guid><description>&lt;p>&lt;img alt="6" loading="lazy" src="https://example.org/images/the-structure-of-agents/6.webp">&lt;/p>
 &lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
 &lt;h3 id="model-based-reflex-agents">Model-based reflex agents&lt;/h3>
 &lt;p>부분 관찰 가능성(partial observability)을 다루는 가장 효과적인 방법은 에이전트가 현재 볼 수 없는 세계의 부분을 추적하는 것&lt;/p>
 &lt;p>즉, 에이전트는 지각 이력(percept history)에 의존하는 일종의 **내부 상태(internal state)**를 유지해야 하며, 이를 통해 현재 상태에서 관찰되지 않는 측면을 어느정도 반영할 수 있어야 함&lt;/p>
-&lt;p>&lt;img src="https://kbsooo.github.io/images/the-structure-of-agents/3.png" alt="3">&lt;/p>
+&lt;p>&lt;img alt="3" loading="lazy" src="https://example.org/images/the-structure-of-agents/3.png">&lt;/p>
 &lt;p>&lt;strong>Knowledge required to update internal state&lt;/strong>&lt;/p>
 &lt;ol>
 &lt;li>&lt;strong>세계가 어떻게 변하는지에 대한 정보&lt;/strong>&lt;/li>
@@ -21,7 +21,7 @@
 &lt;li>카메라 젖으면 이미지에 물방울 모양의 물체가 나타나 도로를 부분적으로 가림&lt;/li>
 &lt;li>**센서 모델(sensor model)**이라고 불림&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Role of Model-based agent&lt;/strong>&lt;/p></description></item><item><title>The Structure of Agents (1)</title><link>https://kbsooo.github.io/2025-03-22-the-structure-of-agents-1/</link><pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate><guid>https://kbsooo.github.io/2025-03-22-the-structure-of-agents-1/</guid><description>&lt;p>&lt;img src="https://kbsooo.github.io/images/the-structure-of-agents/1.png" alt="1">&lt;/p>
+&lt;p>&lt;strong>Role of Model-based agent&lt;/strong>&lt;/p></description></item><item><title>The Structure of Agents (1)</title><link>https://example.org/posts/2025-03-22-the-structure-of-agents-1/</link><pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate><guid>https://example.org/posts/2025-03-22-the-structure-of-agents-1/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://example.org/images/the-structure-of-agents/1.png">&lt;/p>
 &lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
 &lt;h3 id="에이전트의-내부-작동-방식">에이전트의 내부 작동 방식&lt;/h3>
 &lt;p>보통 에이전트(인공지능 주체)를 설명할 때 주로 &lt;strong>행동&lt;/strong>에 초점을 맞춰서 이야기함&lt;/p>
