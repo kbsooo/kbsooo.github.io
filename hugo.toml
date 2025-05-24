@@ -1,0 +1,60 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'KBSOO'
+theme = 'papermod'
+
+[pagination]
+  pagerSize = 5
+
+# 추가할 수 있는 설정들
+[params]
+  description = "사이트 설명"
+  author = "작성자명"
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = false
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+  hideAuthor = true
+
+[params.homeInfoParams]
+  Title = "Byungsoo Kang"
+  Content = "Computer Science Student | Interested in AI/ML"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/kbsooo"
+
+[[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/byungsoo-kang-511b82342/"
+
+#[menu]
+  #[[menu.main]]
+   # identifier = "archives"
+   # name = "Projects"
+   # url = "/archives/"
+   # weight = 10
+  #[[menu.main]]
+   # identifier = "tags"
+    #name = "Tags"
+    #url = "/tags/"
+    #weight = 30
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "github"
