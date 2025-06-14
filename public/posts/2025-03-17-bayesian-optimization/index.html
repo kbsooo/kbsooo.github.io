@@ -128,43 +128,7 @@
     <div class="post-meta"><span title='2025-03-17 20:35:00 +0900 KST'>March 17, 2025</span>
 
 </div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#%eb%b2%a0%ec%9d%b4%ec%a7%80%ec%95%88-%ec%b5%9c%ec%a0%81%ed%99%94bayesian-optimization%eb%9e%80" aria-label="베이지안 최적화(Bayesian Optimization)란?">베이지안 최적화(Bayesian Optimization)란?</a></li>
-                <li>
-                    <a href="#%eb%8b%a4%eb%a5%b8-%ed%95%98%ec%9d%b4%ed%8d%bc-%ed%8c%8c%eb%9d%bc%eb%af%b8%ed%84%b0-%ed%8a%9c%eb%8b%9d-%eb%b0%a9%eb%b2%95" aria-label="다른 하이퍼 파라미터 튜닝 방법">다른 하이퍼 파라미터 튜닝 방법</a><ul>
-                        
-                <li>
-                    <a href="#%ea%b7%b8%eb%a6%ac%eb%93%9c-%ec%84%9c%ec%b9%98grid-search" aria-label="그리드 서치(Grid Search)">그리드 서치(Grid Search)</a></li>
-                <li>
-                    <a href="#%eb%9e%9c%eb%8d%a4-%ec%84%9c%ec%b9%98random-search" aria-label="랜덤 서치(Random Search)">랜덤 서치(Random Search)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#%eb%b2%a0%ec%9d%b4%ec%a7%80%ec%95%88-%ec%b5%9c%ec%a0%81%ed%99%94%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ec%95%84%ec%9d%b4%eb%94%94%ec%96%b4-%ec%89%bd%ea%b2%8c-%ec%9d%b4%ed%95%b4%ed%95%98%ea%b8%b0" aria-label="베이지안 최적화의 기본 아이디어 쉽게 이해하기">베이지안 최적화의 기본 아이디어 쉽게 이해하기</a><ul>
-                        
-                <li>
-                    <a href="#%eb%8c%80%ec%b2%b4-%eb%aa%a8%eb%8d%b8surrogate-model" aria-label="대체 모델(Surrogate Model)">대체 모델(Surrogate Model)</a></li>
-                <li>
-                    <a href="#%ed%9a%8d%eb%93%9d-%ed%95%a8%ec%88%98acquisition-function" aria-label="획득 함수(Acquisition Function)">획득 함수(Acquisition Function)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#%eb%b2%a0%ec%9d%b4%ec%a7%80%ec%95%88-%ec%b5%9c%ec%a0%81%ed%99%94%ec%9d%98-%eb%8f%99%ec%9e%91%ec%9d%84-%eb%8b%a8%ea%b3%84%eb%b3%84%eb%a1%9c-%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0" aria-label="베이지안 최적화의 동작을 단계별로 알아보기">베이지안 최적화의 동작을 단계별로 알아보기</a></li>
-                <li>
-                    <a href="#%eb%b2%a0%ec%9d%b4%ec%a7%80%ec%95%88-%ec%b5%9c%ec%a0%81%ed%99%94%ec%9d%98-%ec%9e%a5%ec%a0%90%ea%b3%bc-%eb%8b%a8%ec%a0%90" aria-label="베이지안 최적화의 장점과 단점">베이지안 최적화의 장점과 단점</a></li>
-                <li>
-                    <a href="#%ec%98%88%ec%8b%9c-%ec%bd%94%eb%93%9c" aria-label="예시 코드">예시 코드</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
+  </header> 
   <div class="post-content"><h2 id="베이지안-최적화bayesian-optimization란">베이지안 최적화(Bayesian Optimization)란?<a hidden class="anchor" aria-hidden="true" href="#베이지안-최적화bayesian-optimization란">#</a></h2>
 <p>베이지안 최적화는 머신러닝에서 <strong>하이퍼파라미터 튜닝</strong>을 똑똑하게, 그리고 효율적으로 수행하기 위한 방법. 하이퍼파라미터는 모델을 학습시키기 전에 사람이 직접 설정해야 하는 값들인데, 이 값들이 모델의 성능에 큰 영향을 미침. 예를 들어 학습률(learning rate)이나 트리의 깊이 같은 것들이 하이퍼파라미터.</p>
 <p>문제는 이 값들을 무작정 시도해보는 건 시간도 오래 걸리고 비효율적이라는 점</p>

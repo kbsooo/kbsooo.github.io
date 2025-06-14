@@ -3,16 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2025-03-23T14:51:00+09:00</lastmod>
+    <lastmod>2025-05-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/gemma1/</loc>
+    <lastmod>2025-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-03-23T14:51:00+09:00</lastmod>
+    <lastmod>2025-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-03-23T14:51:00+09:00</lastmod>
+    <lastmod>2025-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-03-23T14:51:00+09:00</lastmod>
+    <lastmod>2025-05-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/2025-03-23-the-structure-of-agents-2/</loc>
     <lastmod>2025-03-23T14:51:00+09:00</lastmod>

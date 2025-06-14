@@ -6,8 +6,15 @@
     <description>Recent content in AI on KBSOO</description>
     <generator>Hugo -- 0.147.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Mar 2025 14:51:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 24 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gemma 뜯어보기 (1)</title>
+      <link>http://localhost:1313/posts/gemma1/</link>
+      <pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/gemma1/</guid>
+      <description>inside of the gemma.cpp</description>
+    </item>
     <item>
       <title>The Structure of Agents (2)</title>
       <link>http://localhost:1313/posts/2025-03-23-the-structure-of-agents-2/</link>
