@@ -10,7 +10,7 @@ tags: ["daily"]
 - [ ]
 
 ## 강의 수강
-- [ ] Building makemore Part3: Activations & Gradients, BatchNorm
+- [ ] [Building makemore Part3: Activations & Gradients, BatchNorm](https://www.youtube.com/watch?v=P6sfmUTpUmc&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=4)
 
 ## 논문 읽기
 - [ ]
