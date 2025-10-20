@@ -1,6 +1,6 @@
 ---
 title: "LLM의 다국어 입력 처리: 영어 컨텍스트와 한국어 지시어의 비밀"
-date: 2025-10-20T12:00:00+09:00
+date: 2025-10-20T09:00:00+09:00
 tags: ["AI", "LLM", "Multilingual Processing", "Language Models"]
 description: "LLM이 영어 중심 입력에 한국어 지시어를 어떻게 처리하는지, 그리고 단어 단위로 언어를 섞은 극단적 경우의 작동 원리를 탐구한 대화 요약. AI의 언어 이해 메커니즘에 대한 인사이트."
 draft: false

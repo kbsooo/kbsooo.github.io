@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Multilingual Processing on KBSOO</title>
+    <link>http://localhost:1313/tags/multilingual-processing/</link>
+    <description>Recent content in Multilingual Processing on KBSOO</description>
+    <generator>Hugo -- 0.147.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Oct 2025 09:00:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/multilingual-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM의 다국어 입력 처리: 영어 컨텍스트와 한국어 지시어의 비밀</title>
+      <link>http://localhost:1313/posts/2025-10-20-how-llms-handle-multilingual-inputs/</link>
+      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-10-20-how-llms-handle-multilingual-inputs/</guid>
+      <description>LLM이 영어 중심 입력에 한국어 지시어를 어떻게 처리하는지, 그리고 단어 단위로 언어를 섞은 극단적 경우의 작동 원리를 탐구한 대화 요약. AI의 언어 이해 메커니즘에 대한 인사이트.</description>
+    </item>
+  </channel>
+</rss>
