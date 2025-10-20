@@ -29,7 +29,7 @@ theme = 'papermod'
 
 [params.homeInfoParams]
   Title = "Byungsoo Kang"
-  Content = "Computer Science Student | Interested in AI/ML"
+  Content = "Computer Science Student | Interested in deep neural networks"
 
 [[params.socialIcons]]
   name = "github"
