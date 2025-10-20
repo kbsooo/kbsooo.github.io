@@ -1,5 +1,5 @@
 ---
-title: "Diving into AI Watermarks: Mechanisms, Research, and Safety Implications"
+title: "Diving into AI Watermarks"
 date: 2025-10-20T12:00:00+09:00
 tags: ["ai", "watermarks", "safety", "alignment", "red-teaming"]
 description: "AI 워터마크 기술의 작동 원리부터 최신 연구, 안전성 및 정렬성 관점, 그리고 적대적 테스트 사례를 탐구한 대화 요약."
