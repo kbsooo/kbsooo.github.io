@@ -1,64 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>AI on KBSOO</title>
-    <link>http://localhost:1313/tags/ai/</link>
-    <description>Recent content in AI on KBSOO</description>
-    <generator>Hugo -- 0.147.5</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 20 Oct 2025 09:00:00 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>LLM의 다국어 입력 처리: 영어 컨텍스트와 한국어 지시어의 비밀</title>
-      <link>http://localhost:1313/posts/2025-10-20-how-llms-handle-multilingual-inputs/</link>
-      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
-      <guid>http://localhost:1313/posts/2025-10-20-how-llms-handle-multilingual-inputs/</guid>
-      <description>LLM이 영어 중심 입력에 한국어 지시어를 어떻게 처리하는지, 그리고 단어 단위로 언어를 섞은 극단적 경우의 작동 원리를 탐구한 대화 요약. AI의 언어 이해 메커니즘에 대한 인사이트.</description>
-    </item>
-    <item>
-      <title>The Structure of Agents (2)</title>
-      <link>http://localhost:1313/posts/2025-03-23-the-structure-of-agents-2/</link>
-      <pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate>
-      <guid>http://localhost:1313/posts/2025-03-23-the-structure-of-agents-2/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;6&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/the-structure-of-agents/6.webp&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del&gt;&lt;/p&gt;
-&lt;h3 id=&#34;model-based-reflex-agents&#34;&gt;Model-based reflex agents&lt;/h3&gt;
-&lt;p&gt;부분 관찰 가능성(partial observability)을 다루는 가장 효과적인 방법은 에이전트가 현재 볼 수 없는 세계의 부분을 추적하는 것&lt;/p&gt;
-&lt;p&gt;즉, 에이전트는 지각 이력(percept history)에 의존하는 일종의 **내부 상태(internal state)**를 유지해야 하며, 이를 통해 현재 상태에서 관찰되지 않는 측면을 어느정도 반영할 수 있어야 함&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;3&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/the-structure-of-agents/3.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Knowledge required to update internal state&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;세계가 어떻게 변하는지에 대한 정보&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;에이전트의 행동이 미치는 영향:&lt;/strong&gt; 핸들을 시계 방향으로 돌리면 차가 오른쪽으로 회전함&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;에이전트와 무관하게 세계가 어떻게 진화하는지:&lt;/strong&gt; 비가 오면 카메라가 젖을 수 있음&lt;/li&gt;
-&lt;li&gt;**전이 모델(transition model)**이라고 불리며, 간단한 불리언 회로(boolean circuits)나 완전한 과학 이론으로 구현될 수 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;세계의 상태가 에이전트의 지각에 어떻게 반영되는지에 대한 정보&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;예를 들어, 앞차가 제동을 시작하면 전방 카메라 이미지에 하나 이상의 빨간 영역이 나타남&lt;/li&gt;
-&lt;li&gt;카메라 젖으면 이미지에 물방울 모양의 물체가 나타나 도로를 부분적으로 가림&lt;/li&gt;
-&lt;li&gt;**센서 모델(sensor model)**이라고 불림&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Role of Model-based agent&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>The Structure of Agents (1)</title>
-      <link>http://localhost:1313/posts/2025-03-22-the-structure-of-agents-1/</link>
-      <pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate>
-      <guid>http://localhost:1313/posts/2025-03-22-the-structure-of-agents-1/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;1&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/the-structure-of-agents/1.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del&gt;&lt;/p&gt;
-&lt;h3 id=&#34;에이전트의-내부-작동-방식&#34;&gt;에이전트의 내부 작동 방식&lt;/h3&gt;
-&lt;p&gt;보통 에이전트(인공지능 주체)를 설명할 때 주로 &lt;strong&gt;행동&lt;/strong&gt;에 초점을 맞춰서 이야기함&lt;/p&gt;
-&lt;p&gt;즉, 에이전트가 특정 &lt;strong&gt;지각(percepts)&lt;/strong&gt; 시퀀스를 받은 후 어떤 **행동(action)**을 하는지에 대해 다뤘음&lt;/p&gt;
-&lt;p&gt;예를 들어, &amp;ldquo;문이 보이면 문을 연다&amp;rdquo;&lt;/p&gt;
-&lt;p&gt;그런데 에이전트의 &lt;strong&gt;내부&lt;/strong&gt;가 어떻게 작동되는지, 어떻게 설계되고 만들어지는지에 대해 알아보겠음&lt;/p&gt;
-&lt;p&gt;인공지능(AI)의 주요 역할은 **에이전트 프로그램(agent program)**을 설계하는 것&lt;/p&gt;
-&lt;p&gt;이 프로그램은 **에이전트 함수(agent function)**을 구현하는데, 에이전트 함수란 쉽게 말해 &lt;strong&gt;지각을 행동으로 연결하는 규칙&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AI on KBSOO</title><link>https://kbsooo.github.io/tags/ai/</link><description>Recent content in AI on KBSOO</description><generator>Hugo -- 0.147.5</generator><language>en-us</language><lastBuildDate>Mon, 20 Oct 2025 12:00:00 +0900</lastBuildDate><atom:link href="https://kbsooo.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>Diving into AI Watermarks</title><link>https://kbsooo.github.io/posts/2025-10-20-diving-into-ai-watermarks/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-10-20-diving-into-ai-watermarks/</guid><description>AI 워터마크 기술의 작동 원리부터 최신 연구, 안전성 및 정렬성 관점, 그리고 적대적 테스트 사례를 탐구한 대화 요약.</description></item><item><title>LLM의 다국어 입력 처리: 영어 컨텍스트와 한국어 지시어의 비밀</title><link>https://kbsooo.github.io/posts/2025-10-20-how-llms-handle-multilingual-inputs/</link><pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-10-20-how-llms-handle-multilingual-inputs/</guid><description>LLM이 영어 중심 입력에 한국어 지시어를 어떻게 처리하는지, 그리고 단어 단위로 언어를 섞은 극단적 경우의 작동 원리를 탐구한 대화 요약. AI의 언어 이해 메커니즘에 대한 인사이트.</description></item><item><title>The Structure of Agents (2)</title><link>https://kbsooo.github.io/posts/2025-03-23-the-structure-of-agents-2/</link><pubDate>Sun, 23 Mar 2025 14:51:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-23-the-structure-of-agents-2/</guid><description>&lt;p>&lt;img alt="6" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/6.webp">&lt;/p>
+&lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
+&lt;h3 id="model-based-reflex-agents">Model-based reflex agents&lt;/h3>
+&lt;p>부분 관찰 가능성(partial observability)을 다루는 가장 효과적인 방법은 에이전트가 현재 볼 수 없는 세계의 부분을 추적하는 것&lt;/p>
+&lt;p>즉, 에이전트는 지각 이력(percept history)에 의존하는 일종의 **내부 상태(internal state)**를 유지해야 하며, 이를 통해 현재 상태에서 관찰되지 않는 측면을 어느정도 반영할 수 있어야 함&lt;/p>
+&lt;p>&lt;img alt="3" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/3.png">&lt;/p>
+&lt;p>&lt;strong>Knowledge required to update internal state&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>세계가 어떻게 변하는지에 대한 정보&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>&lt;strong>에이전트의 행동이 미치는 영향:&lt;/strong> 핸들을 시계 방향으로 돌리면 차가 오른쪽으로 회전함&lt;/li>
+&lt;li>&lt;strong>에이전트와 무관하게 세계가 어떻게 진화하는지:&lt;/strong> 비가 오면 카메라가 젖을 수 있음&lt;/li>
+&lt;li>**전이 모델(transition model)**이라고 불리며, 간단한 불리언 회로(boolean circuits)나 완전한 과학 이론으로 구현될 수 있음&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>&lt;strong>세계의 상태가 에이전트의 지각에 어떻게 반영되는지에 대한 정보&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>예를 들어, 앞차가 제동을 시작하면 전방 카메라 이미지에 하나 이상의 빨간 영역이 나타남&lt;/li>
+&lt;li>카메라 젖으면 이미지에 물방울 모양의 물체가 나타나 도로를 부분적으로 가림&lt;/li>
+&lt;li>**센서 모델(sensor model)**이라고 불림&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Role of Model-based agent&lt;/strong>&lt;/p></description></item><item><title>The Structure of Agents (1)</title><link>https://kbsooo.github.io/posts/2025-03-22-the-structure-of-agents-1/</link><pubDate>Sat, 22 Mar 2025 22:35:00 +0900</pubDate><guid>https://kbsooo.github.io/posts/2025-03-22-the-structure-of-agents-1/</guid><description>&lt;p>&lt;img alt="1" loading="lazy" src="https://kbsooo.github.io/images/the-structure-of-agents/1.png">&lt;/p>
+&lt;p>&lt;del>이 사진 아닌 것 같긴 한데 구글에 the structure of agents 치면 나오길래&amp;hellip;&lt;/del>&lt;/p>
+&lt;h3 id="에이전트의-내부-작동-방식">에이전트의 내부 작동 방식&lt;/h3>
+&lt;p>보통 에이전트(인공지능 주체)를 설명할 때 주로 &lt;strong>행동&lt;/strong>에 초점을 맞춰서 이야기함&lt;/p>
+&lt;p>즉, 에이전트가 특정 &lt;strong>지각(percepts)&lt;/strong> 시퀀스를 받은 후 어떤 **행동(action)**을 하는지에 대해 다뤘음&lt;/p>
+&lt;p>예를 들어, &amp;ldquo;문이 보이면 문을 연다&amp;rdquo;&lt;/p>
+&lt;p>그런데 에이전트의 &lt;strong>내부&lt;/strong>가 어떻게 작동되는지, 어떻게 설계되고 만들어지는지에 대해 알아보겠음&lt;/p>
+&lt;p>인공지능(AI)의 주요 역할은 **에이전트 프로그램(agent program)**을 설계하는 것&lt;/p>
+&lt;p>이 프로그램은 **에이전트 함수(agent function)**을 구현하는데, 에이전트 함수란 쉽게 말해 &lt;strong>지각을 행동으로 연결하는 규칙&lt;/strong>&lt;/p></description></item></channel></rss>

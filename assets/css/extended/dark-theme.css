@@ -1,0 +1,10 @@
+/* Pure Black Dark Mode */
+
+.dark {
+    --theme: #000000;
+    --entry: #222222;
+}
+
+.dark.list {
+    background: #000000;
+}
