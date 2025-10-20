@@ -2,9 +2,15 @@
 
 .dark {
     --theme: #000000;
-    --entry: #222222;
+    --entry: #000000;
 }
 
 .dark.list {
     background: #000000;
+}
+
+/* Remove card borders in dark mode */
+.dark .post-entry,
+.dark .first-entry {
+    border: none;
 }
