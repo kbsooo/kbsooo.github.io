@@ -1,1 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tags on KBSOO</title><link>https://kbsooo.github.io/tags/</link><description>Recent content in Tags on KBSOO</description><generator>Hugo -- 0.147.5</generator><language>en-us</language><lastBuildDate>Mon, 20 Oct 2025 12:00:00 +0900</lastBuildDate><atom:link href="https://kbsooo.github.io/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>AI</title><link>https://kbsooo.github.io/tags/ai/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/ai/</guid><description/></item><item><title>Alignment</title><link>https://kbsooo.github.io/tags/alignment/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/alignment/</guid><description/></item><item><title>Red-Teaming</title><link>https://kbsooo.github.io/tags/red-teaming/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/red-teaming/</guid><description/></item><item><title>Safety</title><link>https://kbsooo.github.io/tags/safety/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/safety/</guid><description/></item><item><title>Watermarks</title><link>https://kbsooo.github.io/tags/watermarks/</link><pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/watermarks/</guid><description/></item><item><title>Language Models</title><link>https://kbsooo.github.io/tags/language-models/</link><pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/language-models/</guid><description/></item><item><title>LLM</title><link>https://kbsooo.github.io/tags/llm/</link><pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/llm/</guid><description/></item><item><title>Multilingual Processing</title><link>https://kbsooo.github.io/tags/multilingual-processing/</link><pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/multilingual-processing/</guid><description/></item><item><title>Etc</title><link>https://kbsooo.github.io/tags/etc/</link><pubDate>Thu, 20 Mar 2025 21:25:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/etc/</guid><description/></item><item><title>ML</title><link>https://kbsooo.github.io/tags/ml/</link><pubDate>Mon, 17 Mar 2025 20:35:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/ml/</guid><description/></item><item><title>Database</title><link>https://kbsooo.github.io/tags/database/</link><pubDate>Sun, 16 Mar 2025 23:43:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/database/</guid><description/></item><item><title>Kaggle</title><link>https://kbsooo.github.io/tags/kaggle/</link><pubDate>Wed, 12 Mar 2025 19:06:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/kaggle/</guid><description/></item><item><title>Reading</title><link>https://kbsooo.github.io/tags/reading/</link><pubDate>Wed, 05 Mar 2025 15:44:00 +0900</pubDate><guid>https://kbsooo.github.io/tags/reading/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on KBSOO</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on KBSOO</description>
+    <generator>Hugo -- 0.147.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Oct 2025 12:00:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI</title>
+      <link>http://localhost:1313/tags/ai/</link>
+      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Alignment</title>
+      <link>http://localhost:1313/tags/alignment/</link>
+      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/alignment/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Red-Teaming</title>
+      <link>http://localhost:1313/tags/red-teaming/</link>
+      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/red-teaming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Safety</title>
+      <link>http://localhost:1313/tags/safety/</link>
+      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/safety/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Watermarks</title>
+      <link>http://localhost:1313/tags/watermarks/</link>
+      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/watermarks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Language Models</title>
+      <link>http://localhost:1313/tags/language-models/</link>
+      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/language-models/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>http://localhost:1313/tags/llm/</link>
+      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multilingual Processing</title>
+      <link>http://localhost:1313/tags/multilingual-processing/</link>
+      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/multilingual-processing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Etc</title>
+      <link>http://localhost:1313/tags/etc/</link>
+      <pubDate>Thu, 20 Mar 2025 21:25:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/etc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ML</title>
+      <link>http://localhost:1313/tags/ml/</link>
+      <pubDate>Mon, 17 Mar 2025 20:35:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/ml/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Database</title>
+      <link>http://localhost:1313/tags/database/</link>
+      <pubDate>Sun, 16 Mar 2025 23:43:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/database/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kaggle</title>
+      <link>http://localhost:1313/tags/kaggle/</link>
+      <pubDate>Wed, 12 Mar 2025 19:06:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/kaggle/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reading</title>
+      <link>http://localhost:1313/tags/reading/</link>
+      <pubDate>Wed, 05 Mar 2025 15:44:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/reading/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
