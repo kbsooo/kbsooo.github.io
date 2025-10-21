@@ -1,6 +1,6 @@
 ---
 title: "Transformer Encoder와 Decoder 차이 탐구"
-date: 2025-10-21T12:00:00+09:00
+date: 2025-10-21T11:32:00+09:00
 tags: ["ai", "transformer", "nlp", "bert", "gpt"]
 description: "GNN과 SBERT 임베딩에서 시작해 Transformer의 Encoder-only와 Decoder-only 모델의 차이, 임베딩 과정까지 탐구한 인사이트."
 draft: false
