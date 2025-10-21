@@ -3,3 +3,34 @@ This is just a placeholder blank stylesheet so as to support adding custom style
 
 Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
 */
+
+/* Custom typography adjustments for better readability */
+.post-title {
+    font-size: 32px;
+}
+
+.post-content h1 {
+    font-size: 28px;
+    margin: 32px auto 24px;
+}
+
+.post-content h2 {
+    font-size: 24px;
+    margin: 28px auto 20px;
+}
+
+.post-content h3 {
+    font-size: 20px;
+}
+
+.post-content h4 {
+    font-size: 14px;
+}
+
+.post-content h5 {
+    font-size: 13px;
+}
+
+.post-content h6 {
+    font-size: 12px;
+}
