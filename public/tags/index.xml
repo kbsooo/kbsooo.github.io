@@ -5,14 +5,98 @@
     <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on KBSOO</description>
     <generator>Hugo -- 0.147.5</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 20 Oct 2025 12:00:00 +0900</lastBuildDate>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 09 Dec 2025 15:40:00 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithm</title>
+      <link>http://localhost:1313/tags/algorithm/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GEO</title>
+      <link>http://localhost:1313/tags/geo/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/geo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>http://localhost:1313/tags/llm/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Marketing</title>
+      <link>http://localhost:1313/tags/marketing/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/marketing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vector-DB</title>
+      <link>http://localhost:1313/tags/vector-db/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/vector-db/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>http://localhost:1313/tags/ai/</link>
-      <pubDate>Mon, 20 Oct 2025 12:00:00 +0900</pubDate>
+      <pubDate>Sun, 09 Nov 2025 09:15:00 +0900</pubDate>
       <guid>http://localhost:1313/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>비즈니스전략</title>
+      <link>http://localhost:1313/tags/%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%EC%A0%84%EB%9E%B5/</link>
+      <pubDate>Thu, 06 Nov 2025 09:15:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4%EC%A0%84%EB%9E%B5/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>추천시스템</title>
+      <link>http://localhost:1313/tags/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/</link>
+      <pubDate>Thu, 06 Nov 2025 09:15:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>플랫폼경제</title>
+      <link>http://localhost:1313/tags/%ED%94%8C%EB%9E%AB%ED%8F%BC%EA%B2%BD%EC%A0%9C/</link>
+      <pubDate>Thu, 06 Nov 2025 09:15:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/%ED%94%8C%EB%9E%AB%ED%8F%BC%EA%B2%BD%EC%A0%9C/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bert</title>
+      <link>http://localhost:1313/tags/bert/</link>
+      <pubDate>Tue, 21 Oct 2025 11:32:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/bert/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gpt</title>
+      <link>http://localhost:1313/tags/gpt/</link>
+      <pubDate>Tue, 21 Oct 2025 11:32:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/gpt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nlp</title>
+      <link>http://localhost:1313/tags/nlp/</link>
+      <pubDate>Tue, 21 Oct 2025 11:32:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/nlp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transformer</title>
+      <link>http://localhost:1313/tags/transformer/</link>
+      <pubDate>Tue, 21 Oct 2025 11:32:00 +0900</pubDate>
+      <guid>http://localhost:1313/tags/transformer/</guid>
       <description></description>
     </item>
     <item>
@@ -48,13 +132,6 @@
       <link>http://localhost:1313/tags/language-models/</link>
       <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
       <guid>http://localhost:1313/tags/language-models/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>LLM</title>
-      <link>http://localhost:1313/tags/llm/</link>
-      <pubDate>Mon, 20 Oct 2025 09:00:00 +0900</pubDate>
-      <guid>http://localhost:1313/tags/llm/</guid>
       <description></description>
     </item>
     <item>

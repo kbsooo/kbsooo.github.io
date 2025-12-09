@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Marketing on KBSOO</title>
+    <link>http://localhost:1313/tags/marketing/</link>
+    <description>Recent content in Marketing on KBSOO</description>
+    <generator>Hugo -- 0.147.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 09 Dec 2025 15:40:00 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/marketing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hacking the Recommendation Algorithm: From Invisible Watermarks to Soul Injection</title>
+      <link>http://localhost:1313/posts/2025-12-09-hacking-recommendation-algorithm-en/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-12-09-hacking-recommendation-algorithm-en/</guid>
+      <description>In an era where algorithms, not humans, are the first audience. A technical dive into adversarial noise, vector DB injection, and the &amp;#39;Soul Copy-Paste&amp;#39; strategy to win the recommendation game.</description>
+    </item>
+    <item>
+      <title>추천 알고리즘 해킹: 워터마크부터 영혼 주입까지</title>
+      <link>http://localhost:1313/posts/2025-12-09-hacking-recommendation-algorithm-kr/</link>
+      <pubDate>Tue, 09 Dec 2025 15:40:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-12-09-hacking-recommendation-algorithm-kr/</guid>
+      <description>사람이 아닌 알고리즘을 설득하는 시대. 보이지 않는 워터마크부터 벡터 DB 인젝션, 그리고 &amp;#39;영혼 붙여넣기&amp;#39; 전략까지. 추천 시스템의 간택을 받기 위한 기술적 접근과 그 한계에 대하여.</description>
+    </item>
+  </channel>
+</rss>

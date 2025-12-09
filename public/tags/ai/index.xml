@@ -5,9 +5,32 @@
     <link>http://localhost:1313/tags/ai/</link>
     <description>Recent content in AI on KBSOO</description>
     <generator>Hugo -- 0.147.5</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 20 Oct 2025 12:00:00 +0900</lastBuildDate>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 09 Nov 2025 09:15:00 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nested Learning: The Illusion of Deep Learning Architectures 논문 번역본</title>
+      <link>http://localhost:1313/posts/2025-11-09-nested-learning/</link>
+      <pubDate>Sun, 09 Nov 2025 09:15:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-11-09-nested-learning/</guid>
+      <description>&lt;h1 id=&#34;nested-learning-the-illusion-of-deep-learning-architectures&#34;&gt;Nested Learning: The Illusion of Deep Learning Architectures&lt;/h1&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;지난 수십 년 동안, 더 강력한 신경망 구조를 개발하고 동시에 그것들을 효과적으로 학습시키기 위한 최적화 알고리즘을 설계하는 것이 머신러닝 모델의 성능을 향상시키기 위한 연구의 핵심이 되어왔다. 최근 특히 언어 모델(Language Models, LMs)의 발전에도 불구하고, 이러한 모델이 지속적으로 학습·기억하며, 스스로 개선하고, ‘효과적인 해(solution)’를 찾을 수 있는가에 대한 근본적인 도전과 미해결 문제가 여전히 존재한다. 이 논문에서는 **Nested Learning(NL)**이라 불리는 새로운 학습 패러다임을 제시한다. 이는 모델을 여러 개의 중첩된(nested), 다단계(multi-level), 또는 병렬적인 최적화 문제들의 집합으로 일관되게 표현하는 방식이다. 각 최적화 문제는 고유한 **‘context flow(문맥 흐름)’**를 가진다. NL은 기존의 딥러닝 방법이 데이터를 학습할 때 사실상 자신의 문맥 흐름을 압축하는 과정을 거친다는 점을 드러내며, 대형 모델에서 ‘in-context learning(문맥 내 학습)’이 어떻게 나타나는지를 설명한다. NL은 또한 딥러닝에 새로운 차원을 제시하며, 더 많은 ‘단계(levels)’를 가진 보다 표현력 있는 학습 알고리즘 설계를 가능하게 하여 고차원적(in-higher-order) 문맥 내 학습 능력을 부여한다. 그 신경과학적으로 그럴듯하고 수학적으로도 화이트박스(white-box)적인 특성 외에도, 우리는 NL의 중요성을 세 가지 핵심 기여를 통해 강조한다:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>LLM 추천 시스템의 상업화와 플랫폼 권력 투쟁</title>
+      <link>http://localhost:1313/posts/2025-11-06-llm-recommendation-platform-power-struggle/</link>
+      <pubDate>Thu, 06 Nov 2025 09:15:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-11-06-llm-recommendation-platform-power-struggle/</guid>
+      <description>LLM에게 의지와 열정이 있을까? 그리고 LLM 기반 추천 시스템이 상업화되면서 플랫폼, 브랜드, 판매자 사이에서 벌어질 권력 투쟁과 생존 전략을 탐구한다. Booking.com부터 ChatGPT까지, 새로운 추천 생태계에서 누가 승자가 될 것인가?</description>
+    </item>
+    <item>
+      <title>Transformer Encoder와 Decoder 차이 탐구</title>
+      <link>http://localhost:1313/posts/2025-10-21-exploring-transformer-encoder-decoder-differences/</link>
+      <pubDate>Tue, 21 Oct 2025 11:32:00 +0900</pubDate>
+      <guid>http://localhost:1313/posts/2025-10-21-exploring-transformer-encoder-decoder-differences/</guid>
+      <description>GNN과 SBERT 임베딩에서 시작해 Transformer의 Encoder-only와 Decoder-only 모델의 차이, 임베딩 과정까지 탐구한 인사이트.</description>
+    </item>
     <item>
       <title>Diving into AI Watermarks</title>
       <link>http://localhost:1313/posts/2025-10-20-diving-into-ai-watermarks/</link>

@@ -1,7 +1,17 @@
 baseURL = 'https://kbsooo.github.io/'
-languageCode = 'en-us'
+defaultContentLanguage = 'en'
 title = 'KBSOO'
 theme = 'papermod'
+
+[languages]
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 1
+  [languages.ko]
+    languageCode = 'ko-KR'
+    languageName = '한국어'
+    weight = 2
 
 [pagination]
   pagerSize = 5
