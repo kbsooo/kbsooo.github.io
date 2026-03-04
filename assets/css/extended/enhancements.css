@@ -1,0 +1,263 @@
+/* ========================================
+   Blog Design Enhancements
+   Black & White Modern Design
+   ======================================== */
+
+/* ===================
+   Typography
+   =================== */
+
+/* Profile/Home title enhancement */
+.profile .profile_inner h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.profile .profile_inner .tagline {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+/* Post titles enhancement */
+.post-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.entry-header .entry-title {
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+/* ===================
+   Glassmorphism Cards
+   =================== */
+
+/* Post entry cards with glassmorphism */
+.dark .post-entry {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .post-entry:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* First/Featured entry - Keep profile section clean and simple */
+.dark .first-entry {
+    background: transparent;
+    border: none;
+}
+
+.dark .first-entry:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Light mode cards */
+.post-entry {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-entry:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.first-entry {
+    background: transparent;
+    border: none;
+}
+
+.first-entry:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===================
+   Links & Interactions
+   =================== */
+
+/* Smooth link transitions */
+.post-content a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+}
+
+.post-content a:hover {
+    opacity: 0.7;
+}
+
+/* Header nav links */
+#menu a {
+    position: relative;
+    transition: opacity 0.2s ease;
+}
+
+#menu a:hover {
+    opacity: 0.7;
+}
+
+/* Social icons hover */
+.social-icons a {
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+}
+
+/* ===================
+   Code Blocks
+   =================== */
+
+.dark .post-content pre {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+.post-content pre {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+}
+
+.post-content code {
+    border-radius: 6px;
+}
+
+/* ===================
+   Subtle Animations
+   =================== */
+
+/* Fade-in animation for page content */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Logo/title subtle hover */
+.logo a {
+    transition: opacity 0.2s ease;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+/* ===================
+   Page Spacing & Layout
+   =================== */
+
+/* Better content spacing */
+.post-content {
+    line-height: 1.8;
+}
+
+.post-content p {
+    margin-bottom: 1.5em;
+}
+
+.post-content h2,
+.post-content h3 {
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* ===================
+   Footer Enhancement
+   =================== */
+
+footer {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+footer:hover {
+    opacity: 1;
+}
+
+/* ===================
+   Dark Mode Specific
+   =================== */
+
+/* Subtle background texture for dark mode */
+.dark.list {
+    background: linear-gradient(180deg, #000000 0%, #050505 100%);
+}
+
+/* Better readability in dark mode */
+.dark .post-content {
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.dark .post-content h1,
+.dark .post-content h2,
+.dark .post-content h3 {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ===================
+   Scrollbar Styling
+   =================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
