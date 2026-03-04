@@ -49,17 +49,9 @@ theme = 'papermod'
   name = "linkedin"
   url = "https://www.linkedin.com/in/byungsoo-kang-511b82342/"
 
-#[menu]
-  #[[menu.main]]
-   # identifier = "archives"
-   # name = "Projects"
-   # url = "/archives/"
-   # weight = 10
-  #[[menu.main]]
-   # identifier = "tags"
-    #name = "Tags"
-    #url = "/tags/"
-    #weight = 30
+[[params.socialIcons]]
+  name = "culture"
+  url = "https://kbsooo.github.io/culture/"
 
 [markup]
   [markup.highlight]
