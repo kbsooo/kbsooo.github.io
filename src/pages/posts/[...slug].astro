@@ -1,0 +1,102 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TagPill from "../../components/TagPill.astro";
+import {
+  formatDate,
+  getPostPath,
+  getTranslationMatches,
+  inferLanguage,
+  normalizeTag,
+  readingMinutes,
+  sortPosts,
+  type PostEntry,
+} from "../../lib/content";
+
+export async function getStaticPaths() {
+  const posts = sortPosts(
+    await getCollection("posts", ({ data }) => !data.draft),
+  );
+
+  return posts.map((post) => ({
+    params: { slug: getPostPath(post).replace(/^\/posts\/|\/$/g, "") },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: PostEntry };
+const allPosts = sortPosts(
+  await getCollection("posts", ({ data }) => !data.draft),
+);
+const currentIndex = allPosts.findIndex((candidate) => candidate.id === post.id);
+const newerPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const olderPost =
+  currentIndex >= 0 && currentIndex < allPosts.length - 1
+    ? allPosts[currentIndex + 1]
+    : null;
+const translationMatches = getTranslationMatches(allPosts, post);
+const { Content, headings } = await render(post);
+const tocHeadings = headings.filter((heading) => heading.depth <= 3).slice(0, 8);
+---
+
+<BaseLayout title={`${post.data.title} | KBSOO`} description={post.data.description}>
+  <article class="article-shell">
+    <header class="article-hero surface-panel">
+      <div class="article-hero__meta">
+        <a href="/posts/">Back to writing</a>
+        <span>{formatDate(post.data.date)}</span>
+        <span>{readingMinutes(post)} min read</span>
+        <span>{inferLanguage(post)}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="article-hero__lede">{post.data.description}</p>}
+      <div class="article-hero__tags">
+        {post.data.tags.map((tag) => <TagPill label={normalizeTag(tag)} />)}
+      </div>
+      {
+        translationMatches.length > 0 && (
+          <div class="translation-strip">
+            <span>Also available in</span>
+            {translationMatches.map((match) => (
+              <a href={getPostPath(match)}>{inferLanguage(match)}</a>
+            ))}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="article-grid">
+      <aside class="article-sidebar">
+        {headings.length > 1 && (
+          <div class="surface-panel toc-panel">
+            <p class="eyebrow">On this page</p>
+            <nav>
+              {tocHeadings.map((heading) => (
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                ))}
+            </nav>
+          </div>
+        )}
+      </aside>
+
+      <div class="surface-panel article-body">
+        <Content />
+      </div>
+    </div>
+
+    <footer class="article-footer">
+      {newerPost && (
+        <a class="article-nav" href={getPostPath(newerPost)}>
+          <small>Newer</small>
+          <strong>{newerPost.data.title}</strong>
+        </a>
+      )}
+      {olderPost && (
+        <a class="article-nav" href={getPostPath(olderPost)}>
+          <small>Older</small>
+          <strong>{olderPost.data.title}</strong>
+        </a>
+      )}
+    </footer>
+  </article>
+</BaseLayout>

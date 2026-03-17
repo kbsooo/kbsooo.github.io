@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatDate, getPostPath, inferLanguage, sortPosts } from "../../lib/content";
+
+const posts = sortPosts(
+  await getCollection("posts", ({ data }) => !data.draft),
+);
+---
+
+<BaseLayout
+  title="Writing | KBSOO"
+  description="All essays and notes by Byungsoo Kang."
+>
+  <section class="page-header page-header--plain">
+    <p class="eyebrow">Writing archive</p>
+    <h1>Essays, technical notes, and translated research.</h1>
+    <p class="hero__lede">
+      A complete index of posts across AI, databases, recommendation systems,
+      and experiments that grew into essays.
+    </p>
+  </section>
+
+  <section class="editorial-list editorial-list--archive">
+    {posts.map((post, index) => (
+      <a class="editorial-row" href={getPostPath(post)}>
+        <span class="editorial-row__index">{String(index + 1).padStart(2, "0")}</span>
+        <div class="editorial-row__body">
+          <strong>{post.data.title}</strong>
+          <p>{post.data.description || "Technical reflections and working notes."}</p>
+        </div>
+        <div class="editorial-row__meta">
+          <span>{formatDate(post.data.date)}</span>
+          <span>{inferLanguage(post)}</span>
+        </div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

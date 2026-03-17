@@ -1,0 +1,33 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Editorial Astro blog for KBSOO.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbsooo/kbsooo.github.io.git"
+  },
+  "keywords": [
+    "astro",
+    "blog",
+    "github-pages"
+  ],
+  "author": "Byungsoo Kang",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kbsooo/kbsooo.github.io/issues"
+  },
+  "homepage": "https://github.com/kbsooo/kbsooo.github.io#readme",
+  "dependencies": {
+    "@astrojs/check": "^0.9.8",
+    "astro": "^6.0.5",
+    "typescript": "^5.9.3"
+  }
+}
