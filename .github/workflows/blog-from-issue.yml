@@ -1,0 +1,170 @@
+name: Blog from Issue
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-post:
+    if: github.event.label.name == 'blog-post'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Write issue body to file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = context.payload.issue.body || '';
+            fs.writeFileSync('/tmp/issue_body.txt', body);
+
+      - name: Parse and create posts
+        run: |
+          python3 << 'PYEOF'
+          import re, os, sys
+          from datetime import datetime
+
+          with open('/tmp/issue_body.txt') as f:
+              body = f.read().replace('\r\n', '\n')
+
+          # Split on <!-- KO -->
+          parts = re.split(r'<!--\s*KO\s*-->', body, flags=re.IGNORECASE)
+          if len(parts) < 2:
+              print("ERROR: <!-- KO --> 구분자를 찾을 수 없습니다.")
+              sys.exit(1)
+
+          en_text = parts[0].strip()
+          ko_text = parts[1].strip()
+
+          def extract_fm_value(text, key):
+              """Extract raw value from frontmatter line."""
+              for line in text.split('\n'):
+                  m = re.match(rf'^{key}:\s*(.+)', line.strip())
+                  if m:
+                      return m.group(1).strip().strip('"\'')
+              return None
+
+          def add_missing_fm_fields(text, fields):
+              """Append missing fields before closing --- of frontmatter."""
+              if not text.startswith('---'):
+                  return text
+              end = text.find('\n---', 3)
+              if end == -1:
+                  return text
+
+              fm_block = text[3:end]
+              rest = text[end:]  # '\n---\n...'
+
+              lines_to_add = []
+              for key, val in fields.items():
+                  if not re.search(rf'^{key}:', fm_block, re.MULTILINE):
+                      lines_to_add.append(f'{key}: {val}')
+
+              if lines_to_add:
+                  fm_block = fm_block.rstrip('\n') + '\n' + '\n'.join(lines_to_add) + '\n'
+
+              return '---' + fm_block + rest
+
+          def slugify(title):
+              s = title.lower()
+              s = re.sub(r'[^\w\s-]', '', s)
+              s = re.sub(r'[\s_-]+', '-', s)
+              return s.strip('-')[:60]
+
+          # Extract from EN frontmatter
+          en_title = extract_fm_value(en_text, 'title') or 'untitled'
+          en_date  = extract_fm_value(en_text, 'date') or datetime.now().strftime('%Y-%m-%dT%H:%M:%S+09:00')
+          date_part = en_date[:10]
+          slug = slugify(en_title)
+          translation_key = slug
+
+          extra_fields = {
+              'draft': 'false',
+              'translationKey': f'"{translation_key}"',
+          }
+
+          en_output = add_missing_fm_fields(en_text, extra_fields)
+          ko_output = add_missing_fm_fields(ko_text, extra_fields)
+
+          en_filename = f'content/posts/{date_part}-{slug}.en.md'
+          ko_filename = f'content/posts/{date_part}-{slug}.ko.md'
+
+          os.makedirs('content/posts', exist_ok=True)
+
+          for fname, content in [(en_filename, en_output), (ko_filename, ko_output)]:
+              with open(fname, 'w') as f:
+                  f.write(content)
+                  if not content.endswith('\n'):
+                      f.write('\n')
+
+          with open('/tmp/post_info.txt', 'w') as f:
+              f.write(f'{en_filename}\n{ko_filename}\n{slug}\n{date_part}\n')
+
+          print(f"✅ {en_filename}")
+          print(f"✅ {ko_filename}")
+          PYEOF
+
+      - name: Commit and push
+        run: |
+          EN_FILE=$(sed -n '1p' /tmp/post_info.txt)
+          KO_FILE=$(sed -n '2p' /tmp/post_info.txt)
+          SLUG=$(sed -n '3p' /tmp/post_info.txt)
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$EN_FILE" "$KO_FILE"
+          git commit -m "post: $SLUG"
+          git push origin main
+
+      - name: Comment and close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const [enFile, koFile, slug, date] = fs.readFileSync('/tmp/post_info.txt', 'utf8').trim().split('\n');
+
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              body: [
+                '✅ 블로그 포스트가 자동 생성되었습니다!',
+                '',
+                `- 🇺🇸 \`${enFile}\``,
+                `- 🇰🇷 \`${koFile}\``,
+                '',
+                `📌 배포 후 확인: https://kbsooo.github.io/posts/${date}-${slug}/`,
+              ].join('\n'),
+            });
+
+            await github.rest.issues.update({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed',
+            });
+
+      - name: Handle error
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              body: [
+                '❌ 포스트 생성에 실패했습니다.',
+                '',
+                '**확인사항:**',
+                '- EN/KO 구분자 `<!-- KO -->`가 있는지 확인',
+                '- 각 섹션이 `---` frontmatter로 시작하는지 확인',
+                '- [Actions 로그](' + `https://github.com/${context.repo.owner}/${context.repo.repo}/actions` + ')에서 상세 오류 확인',
+              ].join('\n'),
+            });
