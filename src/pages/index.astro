@@ -1,12 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TagPill from "../components/TagPill.astro";
 import {
   formatDate,
   getPostPath,
   inferLanguage,
-  normalizeTag,
   sortPosts,
 } from "../lib/content";
 
@@ -14,8 +12,6 @@ const posts = sortPosts(
   await getCollection("posts", ({ data }) => !data.draft),
 );
 const featured = posts.slice(0, 6);
-const topics = [...new Set(posts.flatMap((post) => post.data.tags))].slice(0, 10);
-const koreanCount = posts.filter((post) => inferLanguage(post) === "KR").length;
 const marqueeItems = [
   "LLM Systems",
   "Recommendation",
@@ -30,58 +26,33 @@ const marqueeItems = [
 <BaseLayout
   title="KBSOO"
   description="Editorial notes on AI, LLM systems, databases, and platform strategy."
+  pageClass="page--home"
 >
-  <section class="home-canvas">
-    <div class="home-canvas__intro">
-      <p class="eyebrow">Byungsoo Kang, Seoul</p>
-      <h1>
-        AI,
-        <br />
-        products,
-        <br />
-        and writing
-      </h1>
-      <p class="hero__lede">
-        I write about how models behave, how products change incentives, and how
-        technical systems shape culture.
-      </p>
-      <p class="hero__sublede">
-        Most notes begin with machine learning or recommendation systems and end
-        up somewhere between product strategy, interface design, and human
-        behavior.
-      </p>
-    </div>
-
-    <div class="home-canvas__links">
-      <a href="/posts/">Articles</a>
-      <a href="https://kbsooo.github.io/culture/">Culture</a>
-      <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
-        LinkedIn
-      </a>
-      <span>{posts.length} notes</span>
-    </div>
-
-    <div class="home-marquee">
-      <div class="home-marquee__track">
-        {marqueeItems.concat(marqueeItems).map((item) => (
-          <span class="marquee-chip">{item}</span>
-        ))}
-      </div>
-    </div>
+  <!-- Hero: full viewport, centered, accent-red title -->
+  <section class="section-fullvp home-hero">
+    <p class="eyebrow">Byungsoo Kang, Seoul</p>
+    <h1>
+      AI,<br />
+      products,<br />
+      and writing
+    </h1>
+    <p class="home-hero__sub">
+      I write about how models behave, how products change incentives, and how
+      technical systems shape culture.
+    </p>
   </section>
 
-  <section class="home-meta">
-    <div class="home-meta__stats">
-      <p><strong>{posts.length}</strong> published notes</p>
-      <p><strong>{posts.length - koreanCount} English</strong> and <strong>{koreanCount} Korean</strong></p>
-      <p>Topics move across LLMs, recommendation, databases, and product thinking.</p>
-    </div>
-    <div class="topic-cluster">
-      {topics.map((topic) => <TagPill label={normalizeTag(topic)} />)}
-    </div>
+  <!-- Navigation: big text links -->
+  <section class="section-fullvp home-nav">
+    <a href="/posts/">Articles</a>
+    <a href="https://kbsooo.github.io/culture/">Culture</a>
+    <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
+      LinkedIn
+    </a>
   </section>
 
+  <!-- Recent notes -->
   <section class="section-block section-block--plain">
     <div class="section-heading">
       <p class="eyebrow">Latest</p>
@@ -103,4 +74,13 @@ const marqueeItems = [
       ))}
     </div>
   </section>
+
+  <!-- Marquee strip -->
+  <div class="home-marquee" style="margin-top: 3rem;">
+    <div class="home-marquee__track">
+      {marqueeItems.concat(marqueeItems).map((item) => (
+        <span class="marquee-chip">{item}</span>
+      ))}
+    </div>
+  </div>
 </BaseLayout>
