@@ -2,9 +2,11 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
+  excerptFromBody,
   formatDate,
   getPostPath,
   inferLanguage,
+  readingMinutes,
   sortPosts,
 } from "../lib/content";
 
@@ -12,6 +14,8 @@ const posts = sortPosts(
   await getCollection("posts", ({ data }) => !data.draft),
 );
 const featured = posts.slice(0, 6);
+const leadPost = featured[0];
+const recentNotes = leadPost ? posts.slice(1, 7) : featured;
 const marqueeItems = [
   "LLM Systems",
   "Recommendation",
@@ -21,6 +25,9 @@ const marqueeItems = [
   "Korean / English",
   "Technical Notes",
 ];
+const leadExcerpt = leadPost
+  ? excerptFromBody(leadPost, 180)
+  : "Technical reflections on machine intelligence, products, and systems.";
 ---
 
 <BaseLayout
@@ -28,38 +35,59 @@ const marqueeItems = [
   description="Editorial notes on AI, LLM systems, databases, and platform strategy."
   pageClass="page--home"
 >
-  <!-- Hero: full viewport, centered, accent-red title -->
-  <section class="section-fullvp home-hero">
-    <p class="eyebrow">Byungsoo Kang, Seoul</p>
-    <h1>
-      AI,<br />
-      products,<br />
-      and writing
-    </h1>
-    <p class="home-hero__sub">
-      I write about how models behave, how products change incentives, and how
-      technical systems shape culture.
+  <section class="home-poster">
+    <div class="home-poster__inner">
+      <div class="home-poster__copy">
+        <p class="eyebrow">Byungsoo Kang, Seoul</p>
+        <h1>
+          AI,<br />
+          products,<br />
+          and writing
+        </h1>
+        <p class="home-hero__sub">
+          I write about how models behave, how products change incentives, and how
+          technical systems shape culture.
+        </p>
+        <div class="home-poster__actions">
+          <a href="/posts/">Read articles</a>
+          <a href="https://kbsooo.github.io/culture/">Open culture log</a>
+          <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      {leadPost && (
+        <a class="home-poster__feature" href={getPostPath(leadPost)}>
+          <span class="home-poster__feature-label">Latest note</span>
+          <strong>{leadPost.data.title}</strong>
+          <p>{leadPost.data.description || leadExcerpt}</p>
+          <div class="home-poster__feature-meta">
+            <span>{formatDate(leadPost.data.date)}</span>
+            <span>{inferLanguage(leadPost)}</span>
+            <span>{readingMinutes(leadPost)} min</span>
+          </div>
+        </a>
+      )}
+    </div>
+  </section>
+
+  <section class="home-intro">
+    <p class="home-intro__kicker">Writing archive</p>
+    <p class="home-intro__text">
+      Essays, technical notes, and product thinking collected as a personal editorial room.
+      The writing moves between research detail and system-level judgment.
     </p>
   </section>
 
-  <!-- Navigation: big text links -->
-  <section class="section-fullvp home-nav">
-    <a href="/posts/">Articles</a>
-    <a href="https://kbsooo.github.io/culture/">Culture</a>
-    <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
-      LinkedIn
-    </a>
-  </section>
-
-  <!-- Recent notes -->
   <section class="section-block section-block--plain">
     <div class="section-heading">
       <p class="eyebrow">Latest</p>
       <h2>Recent notes</h2>
     </div>
     <div class="editorial-list">
-      {featured.map((post, index) => (
+      {recentNotes.map((post, index) => (
         <a class="editorial-row" href={getPostPath(post)}>
           <span class="editorial-row__index">{String(index + 1).padStart(2, "0")}</span>
           <div class="editorial-row__body">
