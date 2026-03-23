@@ -37,49 +37,39 @@ const leadExcerpt = leadPost
 >
   <section class="home-poster">
     <div class="home-poster__inner">
-      <div class="home-poster__copy">
+      <div class="home-poster__intro">
         <p class="eyebrow">Byungsoo Kang · ML Engineer</p>
-        <h1>
-          ML,<br />
-          agents,<br />
-          and applied research
-        </h1>
-        <p class="home-hero__sub">
-          I work on LLM systems, translation, and multimodal modeling, and I use this space
-          to document experiments, project decisions, and what I learn along the way.
-        </p>
-        <div class="home-poster__actions">
-          <a href="/posts/">Read articles</a>
-          <a href="https://kbsooo.github.io/culture/">Open culture log</a>
-          <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-        </div>
+        <h1>LLM systems, translation, multimodal ML.</h1>
+        <p class="home-hero__sub">Projects, experiments, and notes.</p>
       </div>
 
-      {leadPost && (
-        <a class="home-poster__feature" href={getPostPath(leadPost)}>
-          <span class="home-poster__feature-label">Latest note</span>
-          <strong>{leadPost.data.title}</strong>
-          <p>{leadPost.data.description || leadExcerpt}</p>
-          <div class="home-poster__feature-meta">
-            <span>{formatDate(leadPost.data.date)}</span>
-            <span>{inferLanguage(leadPost)}</span>
-            <span>{readingMinutes(leadPost)} min</span>
-          </div>
+      <nav class="home-poster__nav" aria-label="Primary">
+        <a href="/posts/"><span class="home-poster__dot"></span>Articles</a>
+        <a href="https://kbsooo.github.io/culture/"><span class="home-poster__dot"></span>Culture</a>
+        <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer"><span class="home-poster__dot"></span>GitHub</a>
+        <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">
+          <span class="home-poster__dot"></span>LinkedIn
         </a>
-      )}
+      </nav>
     </div>
   </section>
 
-  <section class="home-intro">
-    <p class="home-intro__kicker">Writing archive</p>
-    <p class="home-intro__text">
-      Notes from building ML systems: agent workflows, evaluation, model behavior,
-      and the practical side of turning recent research into usable tools.
-    </p>
-  </section>
+  {leadPost && (
+    <section class="home-spotlight">
+      <p class="home-spotlight__label">Latest note</p>
+      <a class="home-spotlight__link" href={getPostPath(leadPost)}>
+        <div class="home-spotlight__body">
+          <strong>{leadPost.data.title}</strong>
+          <p>{leadPost.data.description || leadExcerpt}</p>
+        </div>
+        <div class="home-spotlight__meta">
+          <span>{formatDate(leadPost.data.date)}</span>
+          <span>{inferLanguage(leadPost)}</span>
+          <span>{readingMinutes(leadPost)} min</span>
+        </div>
+      </a>
+    </section>
+  )}
 
   <section class="section-block section-block--plain">
     <div class="section-heading">
