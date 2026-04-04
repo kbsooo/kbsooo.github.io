@@ -44,44 +44,44 @@ const { Content } = await render(post);
   pageClass="page--post-detail"
 >
   <article class="article-shell">
-    <header class="article-hero surface-panel">
+    <header class="article-hero">
+      <a class="article-hero__back" href="/posts/">← Back to articles</a>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="article-hero__lede">{post.data.description}</p>}
       <div class="article-hero__meta">
-        <a href="/posts/">Back to writing</a>
         <span>{formatDate(post.data.date)}</span>
         <span>{readingMinutes(post)} min read</span>
         <span>{inferLanguage(post)}</span>
       </div>
-      <h1>{post.data.title}</h1>
-      {post.data.description && <p class="article-hero__lede">{post.data.description}</p>}
-      <div class="article-hero__tags">
-        {post.data.tags.map((tag) => <TagPill label={normalizeTag(tag)} />)}
-      </div>
-      {
-        translationMatches.length > 0 && (
-          <div class="translation-strip">
-            <span>Also available in</span>
-            {translationMatches.map((match) => (
-              <a href={getPostPath(match)}>{inferLanguage(match)}</a>
-            ))}
-          </div>
-        )
-      }
+      {post.data.tags.length > 0 && (
+        <div class="article-hero__tags">
+          {post.data.tags.map((tag) => <TagPill label={normalizeTag(tag)} />)}
+        </div>
+      )}
+      {translationMatches.length > 0 && (
+        <div class="translation-strip">
+          <span>Also in</span>
+          {translationMatches.map((match) => (
+            <a href={getPostPath(match)}>{inferLanguage(match)}</a>
+          ))}
+        </div>
+      )}
     </header>
 
-    <div class="surface-panel article-body">
+    <div class="article-body">
       <Content />
     </div>
 
     <footer class="article-footer">
-      {newerPost && (
+      {newerPost ? (
         <a class="article-nav" href={getPostPath(newerPost)}>
-          <small>Newer</small>
+          <small>← Newer</small>
           <strong>{newerPost.data.title}</strong>
         </a>
-      )}
+      ) : <div />}
       {olderPost && (
-        <a class="article-nav" href={getPostPath(olderPost)}>
-          <small>Older</small>
+        <a class="article-nav" style="text-align:right" href={getPostPath(olderPost)}>
+          <small>Older →</small>
           <strong>{olderPost.data.title}</strong>
         </a>
       )}
