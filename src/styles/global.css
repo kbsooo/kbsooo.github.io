@@ -23,9 +23,8 @@
   --code-bg:     #1e1e2e;
   --code-text:   #cdd6f4;
 
-  /* Room tints — subtle, not jarring */
   --room-home:        #fafaf8;
-  --room-posts:       #f6f8f4;
+  --room-posts:       #fafaf8;
   --room-post-detail: #fafaf8;
   --room-404:         #1a1a2e;
 
@@ -62,7 +61,7 @@ html[data-theme="dark"] {
   --code-text:   #cdd6f4;
 
   --room-home:        #161618;
-  --room-posts:       #161a16;
+  --room-posts:       #161618;
   --room-post-detail: #161618;
   --room-404:         #0e0e18;
   color-scheme: dark;
