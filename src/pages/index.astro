@@ -2,16 +2,17 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
+  dedupeTranslations,
   excerptFromBody,
   formatDate,
   getPostPath,
   inferLanguage,
   readingMinutes,
-  sortPosts,
+  sortPostsPreferKo,
 } from "../lib/content";
 
-const posts = sortPosts(
-  await getCollection("posts", ({ data }) => !data.draft),
+const posts = dedupeTranslations(
+  sortPostsPreferKo(await getCollection("posts", ({ data }) => !data.draft)),
 );
 const featuredPost = posts[0];
 const recentPosts = posts.slice(1, 7);

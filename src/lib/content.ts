@@ -70,3 +70,29 @@ export function getTranslationMatches(posts: PostEntry[], post: PostEntry) {
       candidate.data.translationKey === post.data.translationKey,
   );
 }
+
+/** For listing pages: keep one post per translationKey (prefer KO). */
+export function dedupeTranslations(posts: PostEntry[]) {
+  const seen = new Set<string>();
+  return posts.filter((post) => {
+    const key = post.data.translationKey;
+    if (!key) return true;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/** Sort so KO comes before EN within the same translationKey group. */
+export function sortPostsPreferKo(posts: PostEntry[]) {
+  const sorted = sortPosts(posts);
+  sorted.sort((a, b) => {
+    if (a.data.translationKey && a.data.translationKey === b.data.translationKey) {
+      const aIsKo = inferLanguage(a) === "KR" ? 0 : 1;
+      const bIsKo = inferLanguage(b) === "KR" ? 0 : 1;
+      return aIsKo - bIsKo;
+    }
+    return 0;
+  });
+  return sorted;
+}
