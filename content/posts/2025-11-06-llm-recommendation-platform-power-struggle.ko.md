@@ -4,6 +4,7 @@ date: 2025-11-06T09:15:00+09:00
 tags: ["AI", "LLM", "추천시스템", "플랫폼경제", "비즈니스전략"]
 description: "LLM에게 의지와 열정이 있을까? 그리고 LLM 기반 추천 시스템이 상업화되면서 플랫폼, 브랜드, 판매자 사이에서 벌어질 권력 투쟁과 생존 전략을 탐구한다. Booking.com부터 ChatGPT까지, 새로운 추천 생태계에서 누가 승자가 될 것인가?"
 draft: false
+translationKey: "llm-recommendation-platform-power-struggle"
 ---
 
 ## 들어가며: LLM은 정말 답변하고 싶은 '의지'가 있을까?
@@ -527,6 +528,29 @@ def dynamic_pricing(demand, platform):
 
 ---
 
-출처:
-- 본 글은 LLM의 작동 원리, 추천 시스템의 상업화, 플랫폼 경제 구조에 대한 기술적 분석과 사고 실험을 바탕으로 작성되었습니다.
-- 실제 플랫폼 사례들은 일반적으로 알려진 비즈니스 모델과 관행을 기반으로 하였습니다.
+## 참고 자료
+
+**LLM 추천 시스템 연구**
+- Wu, L. et al. (2024). "Large Language Model Enhanced Recommender Systems: A Survey." *arXiv:2412.13432*. LLM과 추천 시스템 통합에 대한 포괄적 서베이.
+- Gao, Y. et al. (2025). "A Survey on LLM-powered Agents for Recommender Systems." *Findings of EMNLP 2025*. LLM 기반 추천 에이전트의 최신 동향.
+- "Enhancing Hotel Recommendations with AI: LLM-Based Review Summarization and Query-Driven Insights." *arXiv:2510.18277*. 호텔 추천에서의 LLM 활용 사례 연구.
+
+**플랫폼 경제와 AI 규제**
+- U.S. DOJ & FTC (2025). AI 가격 알고리즘과 반독점 집행 강화 — 알고리즘 기반 가격 담합과 플랫폼 시장 지배력에 대한 규제 동향.
+- European Commission (2025). Digital Markets Act (DMA) AI 검토 — 게이트키퍼의 AI 추천 시스템 랭킹에서 자사 서비스 우대 금지 조항 포함.
+- Wilson Sonsini (2026). "2026 Antitrust Year in Preview: AI" — AI 플랫폼의 반독점 규제 전망.
+
+**산업 사례**
+- OpenAI (2026). "Our Approach to Advertising and Expanding Access to ChatGPT" — 2026년 2월 ChatGPT 광고 도입. CPM $60, 최소 집행 금액 $200,000.
+- Booking.com & OpenAI (2025). "Booking.com and OpenAI Personalize Travel at Scale" — Booking.com의 다중 LLM 아키텍처와 AI Trip Planner 출시.
+- Amazon Science (2025). "The Technology Behind Amazon's GenAI-Powered Shopping Assistant, Rufus" — 2.5억 사용자, 구매 전환율 60% 향상.
+- Perplexity AI (2026). "Shopping That Puts You First" — 비후원 추천 모델, 2026년 2월 광고 모델 전면 폐기.
+- Google (2026). Universal Commerce Protocol (UCP) — Shopify, Walmart, Target 등과 협력한 AI 쇼핑 개방형 표준.
+
+**RLHF와 보상 해킹**
+- Casper, S. et al. (2025). "RLHF Deciphered: A Critical Analysis of Reinforcement Learning from Human Feedback for LLMs." *ACM Computing Surveys*. RLHF의 한계와 보상 해킹 문제 분석.
+- Weng, L. (2024). "Reward Hacking in Reinforcement Learning." *Lil'Log*. 보상 함수 악용과 정렬 실패에 대한 기술적 해설.
+
+**LEO (LLM Engine Optimization)**
+- ConnectionModel (2025). "Mastering LEO: How To Optimize Your Content for Large Language Models." SEO에서 LEO로의 전환과 최적화 전략.
+- Vercel (2025). "How We're Adapting SEO for LLMs and AI Search." ChatGPT가 Vercel 신규 가입의 10%를 차지하게 된 사례.
