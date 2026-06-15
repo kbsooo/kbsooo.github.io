@@ -948,6 +948,18 @@ img {
   text-underline-offset: 0.15em;
 }
 
+.page--home .site-nav {
+  margin-bottom: 3rem;
+}
+
+.page--home .site-nav__brand {
+  margin-bottom: 0;
+}
+
+.page--home .site-nav__links {
+  display: none;
+}
+
 .page-shell,
 .page-shell--wide {
   width: min(650px, 100%);
@@ -1075,6 +1087,11 @@ img {
   background: transparent;
   border-color: var(--line);
   box-shadow: none;
+}
+
+.page--home .featured-post,
+.page--home .featured-post:hover {
+  margin-top: 2rem;
 }
 
 .post-card {
