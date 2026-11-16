@@ -264,9 +264,14 @@ main {
   top: 0;
 }
 
-/* The closing sheet rests on the bottom edge of a page shorter than the window. */
+/* The closing sheet rests on the bottom edge of a page shorter than the window.
+   A page without one lets its last sheet run down to that edge. */
 .sheet--closing {
   margin-top: auto;
+}
+
+main > .sheet:last-child:not(.sheet--closing) {
+  flex: 1 0 auto;
 }
 
 .sheet__head {

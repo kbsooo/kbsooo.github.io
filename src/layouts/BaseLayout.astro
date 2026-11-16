@@ -89,12 +89,17 @@ const currentPath = trimSlash(Astro.url.pathname);
 
       // Stack the sheets (see global.css). A sheet shorter than the window holds
       // at the top; a taller one holds once its last row has come into view.
+      // The page stops scrolling once a short last sheet has come in, so the
+      // sheet before it holds above that one: the end of the page hides nothing.
       const sheets = [...document.querySelectorAll<HTMLElement>(".sheet")];
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const pin = () => {
-          for (const sheet of sheets) {
-            sheet.style.top = `${Math.min(0, window.innerHeight - sheet.offsetHeight)}px`;
-          }
+          const last = sheets.at(-1);
+          const short = last !== undefined && last.offsetHeight < window.innerHeight;
+          sheets.forEach((sheet, index) => {
+            const under = last !== undefined && short && sheets[index + 1] === last ? last.offsetHeight : 0;
+            sheet.style.top = `${Math.min(0, window.innerHeight - under - sheet.offsetHeight)}px`;
+          });
         };
         const watcher = new ResizeObserver(pin);
         for (const sheet of sheets) watcher.observe(sheet);

@@ -5,7 +5,7 @@ import Introduction from "../components/Introduction.astro";
 import { site } from "../data/site";
 ---
 
-<BaseLayout title={`About | ${site.brand}`}>
+<BaseLayout title={`About | ${site.brand}`} contact={false}>
   <Introduction />
   <ActivitySheet />
 </BaseLayout>
