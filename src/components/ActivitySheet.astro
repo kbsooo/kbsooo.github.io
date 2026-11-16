@@ -1,0 +1,124 @@
+---
+// The yellow sheet: what the person has been doing, as dated lines, newest
+// first. A line is set like the head of a work, light figures and a heavy
+// title, and its certificate, if it has one, hangs beside it.
+import PlateSeries from "./PlateSeries.astro";
+import { activity } from "../data/activity";
+---
+
+<section class="sheet" data-sheet data-tone="yellow" aria-label="Activity">
+  <ol class="activity">
+    {
+      activity.map(({ date, ongoing, title, detail, certificate }) => (
+        <li>
+          <div class="activity__line">
+            <time class="activity__date" datetime={date.replace(".", "-")}>
+              {date}
+              {ongoing && (
+                <>
+                  <span aria-hidden="true"> ~</span>
+                  <span class="visually-hidden"> to now</span>
+                </>
+              )}
+            </time>
+            <div>
+              <p class="title">{title}</p>
+              <p class="activity__detail">
+                {
+                  detail.map((piece) =>
+                    typeof piece === "string" ? (
+                      piece
+                    ) : (
+                      // prettier-ignore
+                      <a href={piece.href} target="_blank" rel="noreferrer">{piece.text}</a>
+                    ),
+                  )
+                }
+              </p>
+            </div>
+          </div>
+          {certificate && (
+            <PlateSeries
+              series={{ kind: "documents", plates: [{ image: certificate, label: "Certificate" }] }}
+              work={title}
+              size="small"
+            />
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  /* Every line is as tall as a certificate, so the dates fall at even steps. */
+  .activity {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: clamp(0.9rem, 1.4vw, 1.25rem);
+    --document-height: clamp(6rem, 8.4vw, 7.5rem);
+  }
+
+  /* The line takes the wide column and its certificate the narrow one. */
+  .activity li {
+    display: grid;
+    grid-template-columns: var(--columns);
+    align-items: start;
+    gap: 0.9rem var(--gutter);
+  }
+
+  .activity__line {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(0.75rem, 2vw, 1.75rem);
+  }
+
+  /* Wide enough for "2026.07 ~", so that the titles start on one line. */
+  .activity__date {
+    flex: 0 0 9.5ch;
+    font-size: clamp(1.625rem, 3vw, 2.875rem);
+    font-weight: 200;
+    font-stretch: 75%;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .activity .title {
+    max-width: none;
+  }
+
+  .activity__detail {
+    margin-top: 0.35rem;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 47.99rem) {
+    .activity {
+      grid-auto-rows: auto;
+      gap: 1.6rem;
+      --document-height: 9rem;
+    }
+
+    .activity li {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .activity__line {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .activity__date {
+      flex-basis: auto;
+    }
+  }
+</style>

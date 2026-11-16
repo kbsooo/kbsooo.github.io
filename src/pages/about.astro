@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ActivitySheet from "../components/ActivitySheet.astro";
+import Introduction from "../components/Introduction.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title={`About | ${site.brand}`}>
+  <Introduction />
+  <ActivitySheet />
+</BaseLayout>

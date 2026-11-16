@@ -242,11 +242,6 @@ button {
   max-width: 34ch;
 }
 
-.head__text p + p {
-  margin-top: 0.5rem;
-  color: var(--muted);
-}
-
 /* ── Sheet: a full-width field of one colour that the plates hang on ── */
 
 .sheet {

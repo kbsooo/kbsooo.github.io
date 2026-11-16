@@ -77,8 +77,8 @@ const entries: ResearchItem[] = [
   },
 ];
 
-// Red is kept for the contact sheet.
-const tones = ["blue", "green", "purple", "orange", "yellow", "brown"] as const;
+// Red is kept for the contact sheet and yellow for the activity sheet.
+const tones = ["blue", "green", "purple", "orange", "brown"] as const;
 
 /**
  * Newest first. `no` counts the works in the order they were written, and

@@ -7,13 +7,15 @@ interface Props {
 }
 
 const { handles = false } = Astro.props;
+
+const external = { target: "_blank", rel: "noreferrer" };
 ---
 
 <ul class="contacts">
   {
     contacts.map(({ label, handle, href }) => (
       <li>
-        <a href={href} target="_blank" rel="noreferrer">
+        <a href={href} {...(href.startsWith("mailto:") ? {} : external)}>
           <span class="contacts__label">{label}</span>
           {handles && <span class="contacts__handle">{handle}</span>}
         </a>

@@ -1,6 +1,7 @@
 import type { ImageMetadata } from "astro";
 
-export type SeriesKind = "slides" | "figures" | "pages";
+/** Documents are certificates and the like: hung at one height, each in its own proportions. */
+export type SeriesKind = "slides" | "figures" | "pages" | "documents";
 
 export interface Plate {
   image: ImageMetadata;
@@ -18,18 +19,20 @@ const images = import.meta.glob<ImageMetadata>("../assets/research/*/*/*.{png,jp
   import: "default",
 });
 
-const kinds: SeriesKind[] = ["slides", "figures", "pages"];
-const prefix: Record<SeriesKind, string> = { slides: "Slide", figures: "Fig.", pages: "Page" };
+// The folders a research entry can have.
+const kinds = ["slides", "figures", "pages"] as const;
+type FolderKind = (typeof kinds)[number];
+const prefix: Record<FolderKind, string> = { slides: "Slide", figures: "Fig.", pages: "Page" };
 
 /** The plates of one research entry, grouped by folder: slides, then figures, then pages. */
 export function seriesFor(slug: string): Series[] {
-  const found = new Map<SeriesKind, { name: string; image: ImageMetadata }[]>();
+  const found = new Map<FolderKind, { name: string; image: ImageMetadata }[]>();
 
   for (const [path, image] of Object.entries(images)) {
     const [entry, kind, file] = path.split("/").slice(-3);
-    if (entry !== slug || !kinds.includes(kind as SeriesKind)) continue;
+    if (entry !== slug || !kinds.includes(kind as FolderKind)) continue;
     const name = file.replace(/\.[^.]+$/, "").replace(/^0+(?=\d)/, "");
-    found.set(kind as SeriesKind, [...(found.get(kind as SeriesKind) ?? []), { name, image }]);
+    found.set(kind as FolderKind, [...(found.get(kind as FolderKind) ?? []), { name, image }]);
   }
 
   return kinds

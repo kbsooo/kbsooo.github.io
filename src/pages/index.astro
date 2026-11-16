@@ -1,22 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ActivitySheet from "../components/ActivitySheet.astro";
+import Introduction from "../components/Introduction.astro";
 import PlateSeries from "../components/PlateSeries.astro";
 import { research, venueLine } from "../data/research";
-import { site } from "../data/site";
 import { countLine, seriesFor } from "../lib/plates";
 
-// The home page hangs only the first series of each work, small.
+// The first page shows everything at a glance: the introduction, each work
+// with only its first series, small, then the activity and the contacts.
 const works = research.map((item) => ({ item, series: seriesFor(item.slug).slice(0, 1) }));
 ---
 
 <BaseLayout>
-  <section class="head">
-    <h1 class="display">{site.name}</h1>
-    <div class="head__text">
-      <p>{site.bio}</p>
-      <p>{site.affiliation}</p>
-    </div>
-  </section>
+  <Introduction />
 
   {
     works.map(({ item, series }) => (
@@ -38,4 +34,6 @@ const works = research.map((item) => ({ item, series: seriesFor(item.slug).slice
       </section>
     ))
   }
+
+  <ActivitySheet />
 </BaseLayout>

@@ -18,11 +18,13 @@ const drawn: Record<"small" | "large", Record<SeriesKind, string>> = {
     slides: "(min-width: 48rem) 12vw, 23vw",
     figures: "(min-width: 48rem) 24vw, 46vw",
     pages: "(min-width: 48rem) 12vw, 23vw",
+    documents: "(min-width: 48rem) 16vw, 62vw",
   },
   large: {
     slides: "(min-width: 48rem) 17vw, 46vw",
     figures: "(min-width: 48rem) 34vw, 92vw",
     pages: "(min-width: 48rem) 13vw, 23vw",
+    documents: "(min-width: 48rem) 16vw, 62vw",
   },
 };
 
@@ -119,6 +121,24 @@ const plates = await Promise.all(
     aspect-ratio: 1 / 1.414;
   }
 
+  /* Documents hang at one height, each as wide as its own proportions make it.
+     The sheet they hang on may set the height. */
+  .plates--documents {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .plates--documents .plate {
+    width: auto;
+  }
+
+  .plates--documents .plate img {
+    width: auto;
+    max-width: 100%;
+    height: var(--document-height, 8.5rem);
+    aspect-ratio: auto;
+  }
+
   @media (max-width: 47.99rem) {
     .plates--small.plates--slides {
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -172,10 +192,14 @@ const plates = await Promise.all(
     let pointed = false;
     let tabbed = false;
 
+    // A sheet with only a few plates rests for two beats after each pass;
+    // otherwise two plates would blink in turn.
+    const beats = plates.length < 4 ? plates.length + 2 : plates.length;
+
     const step = () => {
       plates[lit]?.classList.remove("is-lit");
-      lit = (lit + 1) % plates.length;
-      plates[lit].classList.add("is-lit");
+      lit = (lit + 1) % beats;
+      plates[lit]?.classList.add("is-lit");
     };
 
     const sync = () => {
