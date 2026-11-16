@@ -1,77 +1,41 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import {
-  dedupeTranslations,
-  excerptFromBody,
-  formatDate,
-  getPostPath,
-  inferLanguage,
-  readingMinutes,
-  sortPostsPreferKo,
-} from "../lib/content";
+import PlateSeries from "../components/PlateSeries.astro";
+import { research, venueLine } from "../data/research";
+import { site } from "../data/site";
+import { countLine, seriesFor } from "../lib/plates";
 
-const posts = dedupeTranslations(
-  sortPostsPreferKo(await getCollection("posts", ({ data }) => !data.draft)),
-);
-const featuredPost = posts[0];
-const recentPosts = posts.slice(1, 7);
+// The home page hangs only the first series of each work, small.
+const works = research.map((item) => ({ item, series: seriesFor(item.slug).slice(0, 1) }));
 ---
 
-<BaseLayout
-  title="KBSOO"
-  description="CS undergraduate student interested in mechanistic interpretability and LLM systems."
-  pageClass="page--home"
->
-  <section class="home-intro">
-    <h1>Byungsoo Kang</h1>
-    <p class="home-intro__bio">
-      CS undergraduate student interested in mechanistic interpretability,
-      LLM systems, and model behavior.
-    </p>
-    <div class="home-links">
-      <a href="/posts/">Articles</a>
-      <a href="https://kbsooo.github.io/culture/">Culture</a>
-      <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/byungsoo-kang-511b82342/" target="_blank" rel="noreferrer">LinkedIn</a>
+<BaseLayout>
+  <section class="head">
+    <h1 class="display">{site.name}</h1>
+    <div class="head__text">
+      <p>{site.bio}</p>
+      <p>{site.affiliation}</p>
     </div>
   </section>
 
-  {featuredPost && (
-    <a class="featured-post" href={getPostPath(featuredPost)}>
-      <span class="featured-post__label">Latest</span>
-      <h3 class="featured-post__title">{featuredPost.data.title}</h3>
-      <p class="featured-post__desc">
-        {featuredPost.data.description || excerptFromBody(featuredPost, 160)}
-      </p>
-      <div class="featured-post__meta">
-        <span>{formatDate(featuredPost.data.date)}</span>
-        <span>{inferLanguage(featuredPost)}</span>
-        <span>{readingMinutes(featuredPost)} min</span>
-      </div>
-    </a>
-  )}
-
-  <section class="section-block">
-    <div class="section-header">
-      <h2>Recent</h2>
-      <a class="section-header__more" href="/posts/">All articles →</a>
-    </div>
-    <div class="post-list">
-      {recentPosts.map((post) => (
-        <a class="post-card" href={getPostPath(post)}>
-          <div>
-            <strong class="post-card__title">{post.data.title}</strong>
-            <p class="post-card__desc">
-              {post.data.description || "Technical reflections and working notes."}
-            </p>
+  {
+    works.map(({ item, series }) => (
+      <section class="sheet" data-sheet data-tone={item.tone}>
+        <div class="sheet__head">
+          <div class="sheet__id">
+            <span class="numeral">{item.no}</span>
+            <h2 class="title">
+              <a href={`/research/#${item.slug}`}>{item.title}</a>
+            </h2>
           </div>
-          <div class="post-card__meta">
-            <span>{formatDate(post.data.date)}</span>
-            <span>{inferLanguage(post)}</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+          <p>
+            {venueLine(item)}
+            <br />
+            {countLine(series)}
+          </p>
+        </div>
+        {series.map((one) => <PlateSeries series={one} work={item.title} size="small" />)}
+      </section>
+    ))
+  }
 </BaseLayout>

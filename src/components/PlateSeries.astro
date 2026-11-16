@@ -1,0 +1,222 @@
+---
+import { getImage } from "astro:assets";
+import type { Series, SeriesKind } from "../lib/plates";
+
+interface Props {
+  series: Series;
+  /** Title of the work, for the image descriptions and the viewer caption. */
+  work: string;
+  /** "small" packs a series into one or two rows; "large" is for reading. */
+  size?: "small" | "large";
+}
+
+const { series, work, size = "large" } = Astro.props;
+
+// How wide one plate is drawn, so the browser can pick a file from srcset.
+const drawn: Record<"small" | "large", Record<SeriesKind, string>> = {
+  small: {
+    slides: "(min-width: 48rem) 12vw, 23vw",
+    figures: "(min-width: 48rem) 24vw, 46vw",
+    pages: "(min-width: 48rem) 12vw, 23vw",
+  },
+  large: {
+    slides: "(min-width: 48rem) 17vw, 46vw",
+    figures: "(min-width: 48rem) 34vw, 92vw",
+    pages: "(min-width: 48rem) 13vw, 23vw",
+  },
+};
+
+const plates = await Promise.all(
+  series.plates.map(async ({ image, label }) => {
+    const widths = [...new Set([200, 400, 800, 1200].map((width) => Math.min(width, image.width)))];
+    return {
+      label,
+      image,
+      thumb: await getImage({ src: image, widths, format: "webp" }),
+      full: await getImage({ src: image, width: Math.min(image.width, 1920), format: "webp" }),
+    };
+  }),
+);
+---
+
+<ol class:list={["plates", `plates--${series.kind}`, `plates--${size}`]}>
+  {
+    plates.map(({ label, image, thumb, full }, index) => (
+      <li style={`--i: ${index}`}>
+        <button
+          type="button"
+          class="plate"
+          data-plate
+          data-label={label}
+          data-work={work}
+          data-full={full.src}
+          data-width={image.width}
+          data-height={image.height}
+        >
+          <img
+            src={thumb.src}
+            srcset={thumb.srcSet.attribute}
+            sizes={drawn[size][series.kind]}
+            width={image.width}
+            height={image.height}
+            alt={`${label} of ${work}`}
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .plates {
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .plates--small.plates--slides {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .plates--small.plates--figures,
+  .plates--large.plates--slides {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .plates--large.plates--figures,
+  .plates--pages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* A plate is a print on white paper. It hangs in grey until it is lit. */
+  .plate {
+    display: block;
+    width: 100%;
+    background: var(--paper);
+    filter: var(--plate-unlit);
+    transition: filter 0.45s ease;
+  }
+
+  .plate:hover,
+  .plate:focus-visible,
+  .plate.is-lit {
+    filter: none;
+  }
+
+  .plate:focus-visible {
+    outline: 3px solid var(--on-field);
+    outline-offset: 3px;
+  }
+
+  .plate img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+
+  .plates--pages .plate img {
+    aspect-ratio: 1 / 1.414;
+  }
+
+  @media (max-width: 47.99rem) {
+    .plates--small.plates--slides {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .plates--small.plates--figures,
+    .plates--large.plates--slides {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .plates--large.plates--figures {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .plates--pages {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* On load, each series is hung plate by plate in reading order. */
+  @media (prefers-reduced-motion: no-preference) {
+    .plates li {
+      animation: hang 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      animation-delay: calc(var(--i) * 40ms + 150ms);
+    }
+
+    @keyframes hang {
+      from {
+        opacity: 0;
+        transform: translateY(-0.6rem);
+      }
+    }
+  }
+</style>
+
+<script>
+  // Colour walks through the plates of each sheet in reading order, one plate
+  // at a time. It stops while the visitor is pointing at or tabbing through
+  // the sheet, so that only their own plate is lit. A plate that merely got
+  // focus back when the viewer closed does not count as tabbing.
+  const stepMs = 1100;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  for (const sheet of document.querySelectorAll<HTMLElement>("[data-sheet]")) {
+    const plates = [...sheet.querySelectorAll<HTMLElement>("[data-plate]")];
+    if (plates.length < 2) continue;
+
+    let lit = -1;
+    let timer: number | undefined;
+    let inView = false;
+    let pointed = false;
+    let tabbed = false;
+
+    const step = () => {
+      plates[lit]?.classList.remove("is-lit");
+      lit = (lit + 1) % plates.length;
+      plates[lit].classList.add("is-lit");
+    };
+
+    const sync = () => {
+      const run =
+        inView && !pointed && !tabbed && !document.hidden && !reducedMotion.matches;
+      if (run && timer === undefined) {
+        step();
+        timer = window.setInterval(step, stepMs);
+      } else if (!run && timer !== undefined) {
+        window.clearInterval(timer);
+        timer = undefined;
+        plates[lit]?.classList.remove("is-lit");
+      }
+    };
+
+    new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.2 },
+    ).observe(sheet);
+
+    sheet.addEventListener("pointerenter", () => {
+      pointed = true;
+      sync();
+    });
+    sheet.addEventListener("pointerleave", () => {
+      pointed = false;
+      tabbed = false;
+      sync();
+    });
+    sheet.addEventListener("focusin", (event) => {
+      tabbed = (event.target as Element).matches(":focus-visible");
+      sync();
+    });
+    sheet.addEventListener("focusout", () => {
+      tabbed = false;
+      sync();
+    });
+    document.addEventListener("visibilitychange", sync);
+    reducedMotion.addEventListener("change", sync);
+  }
+</script>

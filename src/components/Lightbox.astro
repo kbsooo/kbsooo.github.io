@@ -1,0 +1,167 @@
+---
+// One viewer for the whole page. A click on any plate opens it on the colour
+// of the sheet the plate hangs on, and steps through that sheet's plates.
+---
+
+<dialog class="lightbox" data-lightbox aria-label="Plate viewer">
+  <div class="lightbox__bar">
+    <p class="lightbox__caption">
+      <strong data-lightbox-label></strong>
+      <span data-lightbox-work></span>
+    </p>
+    <button type="button" data-lightbox-close>Close</button>
+  </div>
+  <div class="lightbox__stage" data-lightbox-stage>
+    <img data-lightbox-image alt="" />
+  </div>
+  <div class="lightbox__bar">
+    <button type="button" data-lightbox-previous>Previous</button>
+    <span data-lightbox-count></span>
+    <button type="button" data-lightbox-next>Next</button>
+  </div>
+</dialog>
+
+<style>
+  .lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--field, var(--wall));
+    color: var(--on-field);
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .lightbox__bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem var(--gutter);
+  }
+
+  .lightbox__caption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    min-width: 0;
+  }
+
+  .lightbox__caption strong {
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .lightbox button {
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+
+  .lightbox button:hover {
+    text-decoration-thickness: 3px;
+  }
+
+  .lightbox__stage {
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding: 0 var(--gutter);
+  }
+
+  .lightbox__stage img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .lightbox[open] {
+      animation: open 0.22s ease-out;
+    }
+
+    @keyframes open {
+      from {
+        opacity: 0;
+      }
+    }
+
+    .lightbox__stage img {
+      animation: show 0.22s ease-out;
+    }
+
+    @keyframes show {
+      from {
+        opacity: 0;
+        transform: scale(0.97);
+      }
+    }
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-lightbox]");
+  const image = dialog?.querySelector<HTMLImageElement>("[data-lightbox-image]");
+  const stage = dialog?.querySelector<HTMLElement>("[data-lightbox-stage]");
+  const label = dialog?.querySelector<HTMLElement>("[data-lightbox-label]");
+  const work = dialog?.querySelector<HTMLElement>("[data-lightbox-work]");
+  const count = dialog?.querySelector<HTMLElement>("[data-lightbox-count]");
+
+  if (dialog && image && stage && label && work && count) {
+    let plates: HTMLElement[] = [];
+    let current = 0;
+
+    const show = (index: number) => {
+      current = (index + plates.length) % plates.length;
+      const { full = "", width = "", height = "", label: name = "", work: title = "" } =
+        plates[current].dataset;
+
+      // Replacing the element restarts its entrance animation for each plate.
+      const next = image.cloneNode() as HTMLImageElement;
+      next.src = full;
+      next.width = Number(width);
+      next.height = Number(height);
+      next.alt = `${name} of ${title}`;
+      stage.querySelector("img")?.replaceWith(next);
+
+      label.textContent = name;
+      work.textContent = title;
+      count.textContent = `${current + 1} of ${plates.length}`;
+    };
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Element;
+      const plate = target.closest<HTMLElement>("[data-plate]");
+      const sheet = plate?.closest<HTMLElement>("[data-sheet]");
+      if (!plate || !sheet) return;
+
+      plates = [...sheet.querySelectorAll<HTMLElement>("[data-plate]")];
+      dialog.dataset.tone = sheet.dataset.tone ?? "";
+      show(plates.indexOf(plate));
+      dialog.showModal();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      const target = event.target as Element;
+      if (target.closest("[data-lightbox-previous]")) show(current - 1);
+      else if (target.closest("[data-lightbox-next], [data-lightbox-stage] img")) show(current + 1);
+      else if (target.closest("[data-lightbox-close]") || target === stage) dialog.close();
+    });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+    });
+  }
+</script>

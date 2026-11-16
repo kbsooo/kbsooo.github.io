@@ -1,23 +1,27 @@
 ---
-import "katex/dist/katex.min.css";
+import "@fontsource-variable/bricolage-grotesque/standard.css";
 import "../styles/global.css";
+import ContactLinks from "../components/ContactLinks.astro";
+import Lightbox from "../components/Lightbox.astro";
+import { site } from "../data/site";
 
 interface Props {
   title?: string;
   description?: string;
-  pageClass?: string;
-  ogImage?: string;
+  /** Close the page with the red sheet of contact links. */
+  contact?: boolean;
 }
 
-const {
-  title = "KBSOO",
-  description = "Notes on machine learning, agent systems, and applied research.",
-  pageClass = "",
-  ogImage = "",
-} = Astro.props;
+const { title = site.brand, description = site.bio, contact = true } = Astro.props;
 
-const currentPath = Astro.url.pathname;
-const isArticles = currentPath.startsWith("/posts");
+const nav = [
+  { href: "/", label: "About" },
+  { href: "/research/", label: "Research" },
+  { href: "/contact/", label: "Contact" },
+];
+
+const trimSlash = (path: string) => path.replace(/\/$/, "");
+const currentPath = trimSlash(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -29,21 +33,74 @@ const isArticles = currentPath.startsWith("/posts");
     <meta name="generator" content={Astro.generator} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <title>{title}</title>
+    <script is:inline>
+      // Set the theme before the first paint: the visitor's saved choice, or the system's.
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("theme");
+        } catch {}
+        const system = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = saved === "dark" || saved === "light" ? saved : system;
+      })();
+    </script>
   </head>
-  <body class={pageClass}>
-    <nav class="site-nav">
-      <a class="site-nav__brand" href="/">KBSOO</a>
-      <div class="site-nav__links">
-        <a href="/posts/" class:list={[{ "is-active": isArticles }]}>Articles</a>
-        <a href="https://kbsooo.github.io/culture/">Culture</a>
-        <a href="https://github.com/kbsooo" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </nav>
-    <main class="page-shell">
+  <body>
+    <header class="topbar">
+      <a class="topbar__brand" href="/">{site.brand}</a>
+      <nav class="topbar__nav" aria-label="Pages">
+        {
+          nav.map(({ href, label }) => (
+            <a href={href} aria-current={trimSlash(href) === currentPath ? "page" : undefined}>
+              {label}
+            </a>
+          ))
+        }
+        <button type="button" class="topbar__theme" data-theme-toggle>
+          <span class="when-light">Dark</span>
+          <span class="when-dark">Light</span>
+        </button>
+      </nav>
+    </header>
+    <main>
       <slot />
+      {
+        contact && (
+          <section class="sheet sheet--closing" data-tone="red" aria-label="Contact">
+            <ContactLinks />
+          </section>
+        )
+      }
     </main>
+    <Lightbox />
+    <script>
+      const root = document.documentElement;
+      document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch {
+          // Private windows may refuse storage; the choice then lasts for this page only.
+        }
+      });
+
+      // Stack the sheets (see global.css). A sheet shorter than the window holds
+      // at the top; a taller one holds once its last row has come into view.
+      const sheets = [...document.querySelectorAll<HTMLElement>(".sheet")];
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const pin = () => {
+          for (const sheet of sheets) {
+            sheet.style.top = `${Math.min(0, window.innerHeight - sheet.offsetHeight)}px`;
+          }
+        };
+        const watcher = new ResizeObserver(pin);
+        for (const sheet of sheets) watcher.observe(sheet);
+        window.addEventListener("resize", pin);
+        root.classList.add("stacks");
+      }
+    </script>
   </body>
 </html>

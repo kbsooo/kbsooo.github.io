@@ -1,0 +1,57 @@
+---
+import { contacts } from "../data/site";
+
+interface Props {
+  /** Also print the address under each name. */
+  handles?: boolean;
+}
+
+const { handles = false } = Astro.props;
+---
+
+<ul class="contacts">
+  {
+    contacts.map(({ label, handle, href }) => (
+      <li>
+        <a href={href} target="_blank" rel="noreferrer">
+          <span class="contacts__label">{label}</span>
+          {handles && <span class="contacts__handle">{handle}</span>}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem clamp(1.5rem, 5vw, 5rem);
+  }
+
+  .contacts a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .contacts__label {
+    display: block;
+    font-size: clamp(2.75rem, 8vw, 7.5rem);
+    font-weight: 800;
+    font-stretch: 75%;
+    line-height: 0.9;
+    letter-spacing: -0.012em;
+  }
+
+  .contacts a:hover .contacts__label {
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+  }
+
+  .contacts__handle {
+    display: block;
+    margin-top: 0.75rem;
+    overflow-wrap: anywhere;
+  }
+</style>

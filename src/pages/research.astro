@@ -1,0 +1,110 @@
+---
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PlateSeries from "../components/PlateSeries.astro";
+import { research, venueLine } from "../data/research";
+import { site } from "../data/site";
+import { seriesFor } from "../lib/plates";
+
+// Stop the build if an entry links to an attachment that is not in public/.
+for (const item of research) {
+  for (const file of item.files) {
+    if (!file.href.startsWith("/")) continue;
+    if (!existsSync(join(process.cwd(), "public", decodeURI(file.href)))) {
+      throw new Error(
+        `Research entry "${item.title}" links to ${file.href}, but public${file.href} does not exist.`,
+      );
+    }
+  }
+}
+
+const works = research.map((item) => ({ item, series: seriesFor(item.slug) }));
+---
+
+<BaseLayout
+  title={`Research | ${site.brand}`}
+  description={`Papers and slides by ${site.name}.`}
+>
+  <section class="head">
+    <h1 class="display">Research</h1>
+    <div class="head__text">
+      <p>
+        {
+          works.length === 0
+            ? "No papers yet."
+            : "Papers and slides, newest first. Select a plate to see it larger."
+        }
+      </p>
+    </div>
+  </section>
+
+  {
+    works.map(({ item, series }) => (
+      <article class="sheet" id={item.slug} data-sheet data-tone={item.tone}>
+        <div class="sheet__head">
+          <div class="sheet__id">
+            <span class="numeral">{item.no}</span>
+            <div class="label">
+              <h2 class="title">{item.title}</h2>
+              {item.originalTitle && <p lang={item.originalTitle.lang}>{item.originalTitle.text}</p>}
+              {item.authors && <p>{item.authors}</p>}
+              <p>{item.event ?? venueLine(item)}</p>
+              {item.summary && <p class="label__summary">{item.summary}</p>}
+            </div>
+          </div>
+          <ul class="files">
+            {item.files.map((file) => (
+              <li>
+                <a href={file.href}>{file.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {series.length > 0 && (
+          <div class="hang">
+            {series.map((one) => <PlateSeries series={one} work={item.title} />)}
+          </div>
+        )}
+      </article>
+    ))
+  }
+</BaseLayout>
+
+<style>
+  .label .title {
+    max-width: 30ch;
+    margin-bottom: 0.9rem;
+  }
+
+  .label p {
+    max-width: 64ch;
+  }
+
+  .label__summary {
+    margin-top: 0.9rem;
+  }
+
+  .files {
+    font-weight: 500;
+  }
+
+  .files li + li {
+    margin-top: 0.25rem;
+  }
+
+  /* The series takes the wide column and the pages of the paper the narrow one. */
+  .hang {
+    display: grid;
+    grid-template-columns: var(--columns);
+    align-items: start;
+    gap: var(--gutter);
+  }
+
+  @media (max-width: 47.99rem) {
+    .hang {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+    }
+  }
+</style>
