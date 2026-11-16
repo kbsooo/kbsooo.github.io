@@ -70,8 +70,11 @@
     text-decoration-thickness: 3px;
   }
 
+  /* One cell of a known size, so that a tall plate is held to the height of
+     the stage and not only to its width. */
   .lightbox__stage {
     display: grid;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
     place-items: center;
     min-height: 0;
     padding: 0 var(--gutter);
