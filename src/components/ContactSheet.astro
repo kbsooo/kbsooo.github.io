@@ -1,0 +1,110 @@
+---
+// The red sheet: where to find the person, and at its foot one print.
+// The sheet is the sky of the print: the links stand in it, the land lies
+// along the bottom edge.
+import { getImage } from "astro:assets";
+import ContactLinks from "./ContactLinks.astro";
+import { print } from "../data/print";
+
+interface Props {
+  /** The sheet closes a page: it is then at least as tall as the window, and
+      the layout script (BaseLayout) knows it by `data-closing`. */
+  closing?: boolean;
+}
+
+const { closing = false } = Astro.props;
+const { image } = print;
+
+const widths = [640, 960, 1280, 1920, 2560, 3200, image.width].filter((width) => width <= image.width);
+const drawn = await getImage({ src: image, widths: [...new Set(widths)], format: "webp" });
+
+// The print is never lower than this share of the window's height. On an
+// upright screen that makes it taller than its width allows, so its sides are
+// cropped and the file it needs is wider than the screen: as wide as the
+// print is at that height.
+const least = 45;
+const upright = `(max-aspect-ratio: ${least * image.width}/${100 * image.height})`;
+const sizes = `${upright} ${Math.ceil((least * image.width) / image.height)}vh, 100vw`;
+
+// A phone stops at the 2560 px file, which is sharp enough there at half the
+// weight of the largest.
+const narrow = drawn.srcSet.values
+  .filter(({ descriptor }) => parseInt(descriptor ?? "0") <= 2560)
+  .map(({ url, descriptor }) => `${url} ${descriptor}`)
+  .join(", ");
+---
+
+<section class="sheet contact" data-tone="red" data-closing={closing || undefined} aria-label="Contact">
+  <div class="contact__head">
+    <ContactLinks />
+    <p>
+      {print.artist}
+      <br />
+      <a href={print.href} target="_blank" rel="noreferrer">{print.title}</a>, {print.date}
+      <br />
+      {print.medium}, {print.collection}
+    </p>
+  </div>
+  <picture class="contact__print" style={`--focus: ${print.focus}; --least: ${least}vh`}>
+    <source media="(max-width: 47.99rem)" srcset={narrow} sizes={sizes} />
+    <img
+      src={drawn.src}
+      srcset={drawn.srcSet.attribute}
+      sizes={sizes}
+      width={image.width}
+      height={image.height}
+      alt={print.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+</section>
+
+<style>
+  /* The print blends with this sheet alone. */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    isolation: isolate;
+  }
+
+  /* As tall as the window with the browser's bars away, which is how a phone
+     shows the end of a page: the last screen is then this sheet alone. */
+  .contact[data-closing] {
+    min-height: 100vh;
+  }
+
+  /* The links, and beside them the label of the print; under them where the
+     sheet is too narrow for both. */
+  .contact__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 1.5rem var(--gutter);
+    margin-bottom: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  @media (min-width: 60rem) {
+    .contact__head {
+      grid-template-columns: var(--columns);
+    }
+  }
+
+  /* The print runs from edge to edge and rests on the bottom of the sheet. */
+  .contact__print {
+    display: block;
+    margin: auto calc(-1 * var(--gutter)) 0;
+  }
+
+  /* Multiplied with the sheet, the white paper of the print disappears and
+     its lines stay black. Nothing between the image and the sheet may be
+     filtered, moved or faded, or the paper comes back. */
+  .contact__print img {
+    width: 100%;
+    min-height: var(--least);
+    object-fit: cover;
+    object-position: var(--focus) 100%;
+    mix-blend-mode: multiply;
+  }
+</style>

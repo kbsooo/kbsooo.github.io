@@ -1,14 +1,14 @@
 ---
+// Where to find the person: each name with its address under it.
 import { contacts } from "../data/site";
 
-interface Props {
-  /** Also print the address under each name. */
-  handles?: boolean;
-}
-
-const { handles = false } = Astro.props;
-
 const external = { target: "_blank", rel: "noreferrer" };
+
+// An address breaks only after a slash, never inside a part of it.
+const parts = (handle: string) => {
+  const pieces = handle.split("/");
+  return pieces.map((piece, index) => (index < pieces.length - 1 ? `${piece}/` : piece));
+};
 ---
 
 <ul class="contacts">
@@ -17,7 +17,8 @@ const external = { target: "_blank", rel: "noreferrer" };
       <li>
         <a href={href} {...(href.startsWith("mailto:") ? {} : external)}>
           <span class="contacts__label">{label}</span>
-          {handles && <span class="contacts__handle">{handle}</span>}
+          {/* prettier-ignore */}
+          <span class="contacts__handle">{parts(handle).map((part) => <><span>{part}</span><wbr /></>)}</span>
         </a>
       </li>
     ))
@@ -25,10 +26,14 @@ const external = { target: "_blank", rel: "noreferrer" };
 </ul>
 
 <style>
+  /* One column for each name. When the row is too narrow, the short addresses
+     keep their width and the longest one breaks. */
   .contacts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem clamp(1.5rem, 5vw, 5rem);
+    display: grid;
+    grid-auto-columns: minmax(0, max-content);
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 1.25rem clamp(1.5rem, 4vw, 4rem);
   }
 
   .contacts a {
@@ -38,10 +43,10 @@ const external = { target: "_blank", rel: "noreferrer" };
 
   .contacts__label {
     display: block;
-    font-size: clamp(2.75rem, 8vw, 7.5rem);
     font-family: var(--font-narrow);
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
     font-weight: 1000;
-    line-height: 0.9;
+    line-height: 0.95;
     letter-spacing: -0.005em;
   }
 
@@ -53,7 +58,16 @@ const external = { target: "_blank", rel: "noreferrer" };
 
   .contacts__handle {
     display: block;
-    margin-top: 0.75rem;
-    overflow-wrap: anywhere;
+    margin-top: 0.4rem;
+  }
+
+  .contacts__handle span {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 47.99rem) {
+    .contacts {
+      grid-auto-flow: row;
+    }
   }
 </style>

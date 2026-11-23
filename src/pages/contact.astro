@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactLinks from "../components/ContactLinks.astro";
+import ContactSheet from "../components/ContactSheet.astro";
 import { site } from "../data/site";
 ---
 
@@ -13,17 +13,5 @@ import { site } from "../data/site";
     <h1 class="display">Contact</h1>
   </section>
 
-  <section class="sheet contact" data-tone="red">
-    <ContactLinks handles />
-  </section>
+  <ContactSheet />
 </BaseLayout>
-
-<style>
-  /* The red sheet runs to the bottom of the window, with the links at its foot. */
-  .contact {
-    display: grid;
-    flex: 1 0 auto;
-    align-content: end;
-    min-height: 45vh;
-  }
-</style>

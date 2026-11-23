@@ -2,7 +2,7 @@
 import "@fontsource-variable/sofia-sans";
 import "@fontsource-variable/sofia-sans-extra-condensed";
 import "../styles/global.css";
-import ContactLinks from "../components/ContactLinks.astro";
+import ContactSheet from "../components/ContactSheet.astro";
 import Lightbox from "../components/Lightbox.astro";
 import { site } from "../data/site";
 
@@ -67,13 +67,7 @@ const currentPath = trimSlash(Astro.url.pathname);
     </header>
     <main>
       <slot />
-      {
-        contact && (
-          <section class="sheet sheet--closing" data-tone="red" aria-label="Contact">
-            <ContactLinks />
-          </section>
-        )
-      }
+      {contact && <ContactSheet closing />}
     </main>
     <Lightbox />
     <script>
@@ -90,16 +84,25 @@ const currentPath = trimSlash(Astro.url.pathname);
 
       // Stack the sheets (see global.css). A sheet shorter than the window holds
       // at the top; a taller one holds once its last row has come into view.
-      // The page stops scrolling once a short last sheet has come in, so the
-      // sheet before it holds above that one: the end of the page hides nothing.
+      // The page stops scrolling once its last sheet has come in, so the sheet
+      // before that one is held differently. Above a short last sheet it holds
+      // in what is left of the window: the end of the page hides nothing. Before
+      // the closing sheet, which fills the window, a sheet taller than the
+      // window does not hold at all: its last rows would be covered as soon as
+      // they came into view.
       const sheets = [...document.querySelectorAll<HTMLElement>(".sheet")];
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const pin = () => {
           const last = sheets.at(-1);
-          const short = last !== undefined && last.offsetHeight < window.innerHeight;
+          const height = window.innerHeight;
           sheets.forEach((sheet, index) => {
-            const under = last !== undefined && short && sheets[index + 1] === last ? last.offsetHeight : 0;
-            sheet.style.top = `${Math.min(0, window.innerHeight - under - sheet.offsetHeight)}px`;
+            // The part of the window this sheet holds in.
+            let room = height;
+            if (last !== undefined && sheets[index + 1] === last) {
+              if (last.offsetHeight < height) room = height - last.offsetHeight;
+              else if (last.hasAttribute("data-closing") && sheet.offsetHeight > height) room = 0;
+            }
+            sheet.style.top = `${Math.min(0, room - sheet.offsetHeight)}px`;
           });
         };
         const watcher = new ResizeObserver(pin);
