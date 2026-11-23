@@ -1,0 +1,137 @@
+---
+// The moving scene at the foot of the contact sheet: a piece of the
+// ascii-magic-art library, drawn on a canvas in the sheet's ink. The library
+// draws light as ink, so what is pale in the scene prints dark.
+import { scene } from "../data/scene";
+---
+
+<div
+  class="scene"
+  data-scene
+  data-start={scene.start}
+  role="img"
+  aria-label={scene.alt}
+  style={`--cols: ${scene.cols}; --rows: ${scene.rows}; --focus: ${scene.focus}; --level: ${scene.level}`}
+>
+  <div class="scene__window">
+    <div class="scene__art">
+      <pre aria-hidden="true"></pre>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* From edge to edge, resting on the bottom of the sheet. Its width is the
+     measure of everything inside it. */
+  .scene {
+    margin: auto calc(-1 * var(--gutter)) 0;
+    container-type: inline-size;
+  }
+
+  /* The whole scene is as wide as the sheet, or wider where it has to keep a
+     height: an upright screen then crops its sides. The window shows at most
+     two thirds of the screen's height of it, and its top fades into the sheet. */
+  .scene__window {
+    --art: max(100cqw, calc(45vh * var(--cols) / var(--rows)));
+    --art-height: calc(var(--art) * var(--rows) / var(--cols));
+    --window: min(var(--art-height), 66vh);
+
+    position: relative;
+    height: var(--window);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%);
+  }
+
+  /* Where the window is lower than the scene, the scene is moved up until its
+     level lies a little above the middle of the window. */
+  .scene__art {
+    position: absolute;
+    top: clamp(
+      calc(var(--window) - var(--art-height)),
+      calc(var(--window) * 0.42 - var(--art-height) * var(--level)),
+      0px
+    );
+    left: calc((100cqw - var(--art)) * var(--focus));
+    width: var(--art);
+  }
+
+  /* The player reads the size of a cell and the ink from this element and
+     draws on a canvas it places after it. A cell is 0.602 of the font size
+     wide (CELL_W in the library). */
+  .scene pre {
+    margin: 0;
+    color: var(--on-field);
+    font-family: monospace;
+    font-size: calc(var(--art) / var(--cols) / 0.602);
+    line-height: 1;
+  }
+
+  /* The player holds its canvas to the width of its parent; here the parent is
+     the scene itself, which may be wider than the sheet. */
+  .scene :global(canvas) {
+    max-width: none !important;
+  }
+</style>
+
+<script>
+  // The scene's code is fetched shortly before the sheet comes into view. The
+  // scene is started when it is on screen and stopped when it leaves, and each
+  // time it comes back it goes on from where it stopped.
+  const box = document.querySelector<HTMLElement>("[data-scene]");
+  const pre = box?.querySelector("pre");
+
+  if (box && pre) {
+    const load = () =>
+      Promise.all([
+        import("../vendor/ascii-magic-art/runtime/player.js"),
+        import("../vendor/ascii-magic-art/pieces/viaduct-steam-train.js"),
+      ]);
+
+    let loaded: ReturnType<typeof load> | undefined;
+    let stop: (() => void) | undefined;
+    let onScreen = false;
+    let time = Number(box.dataset.start) || 0;
+
+    const start = async () => {
+      const [{ play }, piece] = await (loaded ??= load());
+      if (!onScreen || stop) return;
+      stop = play(pre, piece, {
+        t0: time,
+        look: { mono: true },
+        onFrame: (_frame: unknown, t: number) => {
+          time = t;
+        },
+      });
+    };
+
+    const halt = () => {
+      stop?.();
+      stop = undefined;
+    };
+
+    new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) loaded ??= load();
+      },
+      { rootMargin: "100% 0px" },
+    ).observe(box);
+
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen) void start();
+      else halt();
+    }).observe(box);
+
+    // A visitor who prefers reduced motion gets one frame, which the player
+    // does not draw again by itself: draw it again when the scene changes size.
+    let width = box.clientWidth;
+    new ResizeObserver(() => {
+      if (box.clientWidth === width) return;
+      width = box.clientWidth;
+      if (!onScreen) return;
+      halt();
+      void start();
+    }).observe(box);
+  }
+</script>
