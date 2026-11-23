@@ -1,0 +1,188 @@
+---
+// The name printed in dots, like the scene on the contact sheet. The heading
+// keeps its text and its type: a canvas is laid over it, and each dot is as
+// large as the letters cover its place. Until the dots are drawn, and if they
+// cannot be drawn, the name stands in type.
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<h1 class="display dotted" data-dotted>{text}</h1>
+
+<style>
+  .dotted {
+    position: relative;
+  }
+
+  /* The canvas carries the ink, so the dots keep it when the letters under
+     them are made clear. */
+  .dotted :global(canvas) {
+    position: absolute;
+    color: var(--ink);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .dotted:global(.is-dotted) {
+    color: transparent;
+  }
+
+  .dotted:global(.is-dotted) :global(canvas) {
+    opacity: 1;
+  }
+
+  /* Where the visitor's system sets the colours itself, the letters are shown
+     in them again, so the dots would only double the name. */
+  @media (forced-colors: active) {
+    .dotted :global(canvas) {
+      display: none;
+    }
+  }
+
+  /* The letters give way to the dots, once. The ink of the canvas itself must
+     change at once with the theme: the dots are drawn in it as it is read. */
+  @media (prefers-reduced-motion: no-preference) {
+    .dotted {
+      transition: color 0.25s ease;
+    }
+
+    .dotted :global(canvas) {
+      transition: opacity 0.25s ease;
+    }
+  }
+</style>
+
+<script>
+  const heading = document.querySelector<HTMLElement>("[data-dotted]");
+
+  if (heading) {
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    const samples = document.createElement("canvas");
+
+    /** The distance between two dots: a thirty-first of the type's size, but never so small that a dot stops being one, nor so large that the letters fall apart. */
+    const pitchFor = (fontSize: number) => Math.min(6.2, Math.max(2.4, fontSize / 31));
+    /** The largest dot, as a share of the distance between two dots. */
+    const largest = 0.96;
+    /** A place the letters cover less than this stays empty. */
+    const least = 0.06;
+    /** Samples along each side of a dot's place. */
+    const fine = 4;
+
+    const draw = async () => {
+      const text = heading.textContent ?? "";
+      const style = getComputedStyle(heading);
+      const fontSize = parseFloat(style.fontSize);
+      const font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+
+      // The canvas must draw with the very face the page has laid out, or the
+      // letters would not fall where the page put them.
+      await document.fonts.load(font, text);
+
+      // Where the page put each letter, measured from the heading's corner.
+      const origin = heading.getBoundingClientRect();
+      const range = document.createRange();
+      const letters: { letter: string; x: number; y: number; width: number; height: number }[] = [];
+      for (const node of heading.childNodes) {
+        if (!(node instanceof Text)) continue;
+        for (let index = 0; index < node.length; index++) {
+          const letter = node.data[index];
+          if (!letter.trim()) continue;
+          range.setStart(node, index);
+          range.setEnd(node, index + 1);
+          const box = range.getBoundingClientRect();
+          letters.push({ letter, x: box.left - origin.left, y: box.top - origin.top, width: box.width, height: box.height });
+        }
+      }
+      if (letters.length === 0 || !(fontSize > 0)) throw new Error("nothing to draw");
+
+      // The letters reach above and below the heading's own box, so the field
+      // of dots is measured from the letters.
+      const left = Math.min(...letters.map(({ x }) => x));
+      const right = Math.max(...letters.map(({ x, width }) => x + width));
+      const top = Math.min(...letters.map(({ y }) => y));
+      const bottom = Math.max(...letters.map(({ y, height }) => y + height));
+      const pitch = pitchFor(fontSize);
+      const columns = Math.ceil((right - left) / pitch);
+      const rows = Math.ceil((bottom - top) / pitch);
+
+      // Draw the letters small, a few samples to each dot's place, and read
+      // how much of each place they cover.
+      samples.width = columns * fine;
+      samples.height = rows * fine;
+      const sampler = samples.getContext("2d", { willReadFrequently: true });
+      const context = canvas.getContext("2d");
+      if (!sampler || !context) throw new Error("no canvas");
+      sampler.setTransform(fine / pitch, 0, 0, fine / pitch, 0, 0);
+      sampler.clearRect(0, 0, columns * pitch, rows * pitch);
+      sampler.font = font;
+      sampler.textBaseline = "alphabetic";
+      sampler.fillStyle = "#000";
+      // A canvas that cannot use this font keeps another one without saying
+      // so. Then the name as the canvas would set it is not as wide as the
+      // page set it, and the letters are left alone.
+      const metrics = sampler.measureText(text);
+      if (Math.abs(metrics.width - (right - left)) > 0.1 * (right - left)) throw new Error("the canvas has another font");
+      const ascent = metrics.fontBoundingBoxAscent;
+      for (const { letter, x, y } of letters) sampler.fillText(letter, x - left, y - top + ascent);
+      const pixels = sampler.getImageData(0, 0, samples.width, samples.height).data;
+
+      const scale = Math.min(3, window.devicePixelRatio || 1);
+      canvas.width = Math.round(columns * pitch * scale);
+      canvas.height = Math.round(rows * pitch * scale);
+      canvas.style.left = `${left}px`;
+      canvas.style.top = `${top}px`;
+      canvas.style.width = `${columns * pitch}px`;
+      canvas.style.height = `${rows * pitch}px`;
+      if (!canvas.isConnected) heading.append(canvas);
+
+      context.setTransform(scale, 0, 0, scale, 0, 0);
+      context.clearRect(0, 0, columns * pitch, rows * pitch);
+      context.fillStyle = getComputedStyle(canvas).color;
+      context.beginPath();
+      let dots = 0;
+      for (let row = 0; row < rows; row++) {
+        for (let column = 0; column < columns; column++) {
+          let covered = 0;
+          for (let j = 0; j < fine; j++) {
+            for (let i = 0; i < fine; i++) {
+              covered += pixels[((row * fine + j) * samples.width + column * fine + i) * 4 + 3];
+            }
+          }
+          const cover = covered / (255 * fine * fine);
+          if (cover < least) continue;
+          // The area of the dot, not its width, follows the cover.
+          const radius = 0.5 * pitch * largest * Math.sqrt(cover);
+          const x = (column + 0.5) * pitch;
+          const y = (row + 0.5) * pitch;
+          context.moveTo(x + radius, y);
+          context.arc(x, y, radius, 0, Math.PI * 2);
+          dots++;
+        }
+      }
+      // Letters that left no dots were not drawn: they are not to be hidden.
+      if (dots === 0) throw new Error("no dots");
+      context.fill();
+      heading.classList.add("is-dotted");
+    };
+
+    // Draw again when the heading changes size or the theme changes the ink.
+    // If drawing fails, the name goes back to type.
+    let waiting = 0;
+    const redraw = () => {
+      cancelAnimationFrame(waiting);
+      waiting = requestAnimationFrame(() => {
+        draw().catch(() => {
+          heading.classList.remove("is-dotted");
+          canvas.remove();
+        });
+      });
+    };
+
+    new ResizeObserver(redraw).observe(heading);
+    new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  }
+</script>

@@ -1,11 +1,12 @@
 ---
 // The name on the wall with the one-line introduction beside it.
 // It opens both the first page and the About page.
+import DottedName from "./DottedName.astro";
 import { site } from "../data/site";
 ---
 
 <section class="head">
-  <h1 class="display">{site.name}</h1>
+  <DottedName text={site.name} />
   <div class="head__text">
     <p>{site.bio}</p>
   </div>
